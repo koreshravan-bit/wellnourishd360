@@ -1,0 +1,10 @@
+- [x] Define site settings, booking destinations, and condition content.
+- [x] Build shared layout and visual system.
+- [x] Build home, condition, insurance, blog, about, and legal pages.
+- [x] Add Markdown articles and per-page SEO metadata; test main navigation and mobile layout.
+- [x] Configure prerendering and GitHub Pages deployment with sitemap generation when the public URL is known.
+- [x] Enrich all condition content, personalize progress cards, and add related reading with tests.
+- [x] Replace placeholder logo with supplied full-color, white, and sun assets across site and browser icons.
+- [x] Recolor existing visual tokens and accents to match the green-and-gold brand.
+- [x] Replace dietitian identity placeholders with Deepthi Harkar’s practice details across pages and metadata.
+- [x] Add Deepthi’s supplied biography and headshot fallbacks across the site.
