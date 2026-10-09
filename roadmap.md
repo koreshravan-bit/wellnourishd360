@@ -8,3 +8,4 @@
 - [x] Recolor existing visual tokens and accents to match the green-and-gold brand.
 - [x] Replace dietitian identity placeholders with Deepthi Harkar’s practice details across pages and metadata.
 - [x] Add Deepthi’s supplied biography and headshot fallbacks across the site.
+- [x] Apply the plum-and-gold color palette only; update color knowledge, run tests, and check five page types on desktop and mobile.

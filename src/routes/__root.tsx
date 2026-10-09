@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#008253" },
+      { name: "theme-color", content: "#4B2A5C" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "WellNourishD360" },
     ],
