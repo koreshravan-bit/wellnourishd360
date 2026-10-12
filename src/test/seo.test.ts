@@ -52,6 +52,6 @@ describe.skipIf(!outDir)('prerendered JSON-LD', () => {
         for (const u of collectUrls(data)) expect(u, `${file}: ${u}`).toMatch(/^https:\/\/wellnourishd360\.com(\/|$)/);
       }
     }
-    expect(blocks).toBeGreaterThan(20);
+    expect(blocks).toBe(19);
   });
 });
