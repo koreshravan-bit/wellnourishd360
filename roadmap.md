@@ -15,3 +15,4 @@
 - [x] Ported 10 care areas and 17 practice states from the green project.
 - [x] About page rewritten from Deepthi's own profile text
 - [x] SEO/AEO pass for wellnourishd360.com: absolute canonicals, sitemap lastmod, JSON-LD, llms.txt, OG image, perf
+- [x] AEO pass: condition search titles + answer-first summaries, home/About FAQs, /locations page, llms key facts, AI bot robots groups, IndexNow
