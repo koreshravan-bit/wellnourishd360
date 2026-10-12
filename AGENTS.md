@@ -11,3 +11,4 @@
 - Prerender all known content paths and deploy the client output to GitHub Pages; use VITE_BASE_PATH and VITE_SITE_URL for repository-hosted URLs and canonical metadata.
 - Serve brand SVGs from public/brand through the Vite base path so the same markup works at repository-hosted URLs.
 - Load the dietitian portrait from public/images through the Vite base path and retain a placeholder fallback until the real photo is supplied.
+- Derive the standalone error page's palette from the root tokens in src/styles.css at bundle time, so error screens cannot drift from the official design system.
