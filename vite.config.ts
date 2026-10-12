@@ -15,7 +15,7 @@ export default defineConfig({
     define: { __BUILD_DATE__: JSON.stringify(new Date().toISOString().slice(0, 10)) },
   },
   tanstackStart: {
-    prerender: { enabled: true, crawlLinks: false },
+    prerender: { enabled: true, crawlLinks: false, autoSubfolderIndex: false },
     pages: prerenderPaths.map((path) => ({ path, prerender: { enabled: true } })),
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
