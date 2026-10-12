@@ -15,14 +15,14 @@ describe('GA loader', () => {
   it('does nothing on a non-.com host', () => {
     for (const h of ['localhost', 'id-preview--x.lovable.app', 'koreshravan-bit.github.io']) {
       const { win, appended } = run(h);
-      expect(win.dataLayer).toBeUndefined();
+      expect(win['dataLayer']).toBeUndefined();
       expect(appended).toHaveLength(0);
     }
   });
   it('loads on wellnourishd360.com with signals off', () => {
     const { win, appended } = run('wellnourishd360.com');
     expect(appended).toHaveLength(1);
-    const cfg = (win.dataLayer as IArguments[]).map(a => Array.from(a)).find(a => a[0] === 'config')!;
+    const cfg = (win['dataLayer'] as IArguments[]).map(a => Array.from(a)).find(a => a[0] === 'config')!;
     expect(cfg).toEqual(['config', 'G-6KE9QF22XN', { allow_google_signals: false, allow_ad_personalization_signals: false }]);
   });
 });
