@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Check, Leaf, Dumbbell, Microscope, Handshake } from 'lucide-react';
 import { BookButton, ActionLink } from '@/components/site';
 import { DietitianPhoto } from '@/components/dietitian-photo';
 import { conditions } from '@/content/conditions';
@@ -7,10 +7,11 @@ import { pageHead, site, statesLabel } from '@/config/site';
 
 export const Route = createFileRoute('/about')({
   head: () => ({
-    ...pageHead(`About ${site.dietitian}, ${site.credentials}`, `Meet ${site.dietitian}, ${site.credentials}: a registered dietitian with more than 15 years in clinical nutrition and health care, offering inclusive video care for individuals, families, groups and workplaces in ${site.states.length} states.`, '/about'),
+    ...pageHead(`About ${site.dietitian}, ${site.credentials}`, `Meet Deepthi Harkar, MS, RDN, LDN: a registered dietitian with over 15 years of experience offering personalized, culturally sensitive, evidence-based nutrition care by video in ${site.states.length} states.`, '/about'),
     scripts: [{ type: 'application/ld+json', children: JSON.stringify({
       '@context': 'https://schema.org', '@type': 'Person', name: site.dietitian,
       honorificSuffix: site.credentials, jobTitle: 'Registered Dietitian Nutritionist',
+      description: 'A registered dietitian and licensed nutritionist with over 15 years of experience helping individuals and families transform their health through sustainable, culturally sensitive, evidence-based nutrition care.',
       alumniOf: [{ '@type': 'CollegeOrUniversity', name: 'University of Delaware' }, { '@type': 'CollegeOrUniversity', name: 'Acharya N.G. Ranga Agricultural University' }],
       knowsLanguage: ['English', 'Hindi', 'Telugu'],
       memberOf: { '@type': 'Organization', name: 'Delaware Academy of Nutrition and Dietetics' },
@@ -39,32 +40,82 @@ const roles = [
   ['Consultant Registered Dietitian', 'Supreme Care Inc.', '2010–2012'],
 ];
 
+const careApproach = [
+  { label: 'Functional medicine', icon: Leaf },
+  { label: 'Exercise', icon: Dumbbell },
+  { label: 'Research-focused', icon: Microscope },
+  { label: 'Accountability', icon: Handshake },
+];
+
+const supportedGoals = [
+  'Diabetes & prediabetes', 'Type 1 diabetes', 'Type 2 diabetes', 'Gestational diabetes',
+  'Weight loss medications / GLP-1s', 'Help losing weight', 'Help gaining weight', 'Weight stabilization',
+  'Bariatric surgery', 'Heart health', 'High blood pressure', 'High cholesterol', 'Kidney disease',
+  'Liver disease', 'Thyroid disorders', 'Gut health', 'IBS', 'GERD / acid reflux', 'Celiac disease',
+  "Crohn's disease", 'Ulcerative colitis', 'Autoimmune disease', 'Cancer', 'Food allergies',
+  "Women's health", 'Menopause', 'Pre- or postnatal nutrition', 'Healthy aging', 'Emotional eating',
+  'Binge eating', 'Disordered eating', 'Vegan/vegetarian', 'Nutrition support', 'General health',
+];
+
+const familiarCuisines = ['Indian', 'Southeast Asian', 'Mediterranean', 'Middle Eastern', 'Mexican', 'Vegetarian', 'Vegan', 'Low carb / keto', 'Paleo'];
+
+const sessionExpectations = [
+  'Walk away with personalized, actionable recommendations you can start using right away',
+  "Understand the roadmap of our work together, including how we'll track progress and adapt over time",
+  'Feel supported, heard, and motivated—never judged',
+];
+
 function About() {
   return <main>
     <section className="section bg-pale"><div className="container-site grid md:grid-cols-2 gap-12 items-center">
-      <div><p className="eyebrow mb-5">MEET YOUR DIETITIAN</p><h1 className="display text-5xl md:text-6xl">{site.dietitian}, {site.credentials}</h1><p className="body-lede mt-6">Clinical experience, health-plan insight and a practical, inclusive approach to food, for individuals, families, groups and workplaces.</p><div className="flex flex-wrap gap-3 mt-7"><BookButton>Book an appointment</BookButton><ActionLink to="/insurance">Check my insurance</ActionLink></div></div>
+      <div><p className="eyebrow mb-5">MEET YOUR DIETITIAN</p><h1 className="display text-5xl md:text-6xl">{site.dietitian}, {site.credentials}</h1><p className="body-lede mt-6">A registered dietitian and licensed nutritionist with over 15 years of experience helping individuals and families transform their health through sustainable, culturally sensitive, evidence-based nutrition care.</p><div className="flex flex-wrap gap-3 mt-7"><BookButton>Book an appointment</BookButton><ActionLink to="/insurance">Check my insurance</ActionLink></div></div>
       <DietitianPhoto className="h-[370px] md:h-[500px] w-full rounded-t-[170px] rounded-b-xl" />
     </div></section>
     <section className="section"><div className="container-site grid md:grid-cols-[1fr_1.5fr] gap-10 md:gap-16">
-      <div><p className="eyebrow mb-4">HER STORY</p><h2 className="display text-4xl md:text-5xl">From the clinic to everyday care.</h2></div>
-      <div className="space-y-9 text-muted-foreground">
-        <div><h3 className="display text-3xl text-foreground mb-3">Clinical roots</h3><p>Deepthi began her dietitian career in 2010. At St. Francis Hospital in Wilmington, she met with people before and after bariatric surgery, led support groups and education sessions, and counseled people managing weight and chronic conditions without surgery. At Supreme Care Inc., she handled nutrition assessments, care plans, staff training and menu approval. Her background also includes enteral and parenteral nutrition support in critical care.</p><p className="mt-3">Those settings gave her a close view of how nutrition plans need to adapt as people’s needs change.</p></div>
-        <div><h3 className="display text-3xl text-foreground mb-3">Inside health plans</h3><p>She went on to work in health strategy and clinical transformation at Highmark, Gateway Health and AmeriHealth Caritas. At Highmark, she designed data-driven workplace wellness and health-management programs. She also published a nutrition article for Highmark’s health blog. That experience helps her understand how care programs and coverage work, so clients can ask informed questions about their benefits.</p></div>
-        <div><h3 className="display text-3xl text-foreground mb-3">Leadership in the field</h3><p>Deepthi served as President of the Delaware Academy of Nutrition and Dietetics from 2012 to 2014. She is currently Chief Operations Officer of Nutrihealth Foundation.</p></div>
-        <div><h3 className="display text-3xl text-foreground mb-3">How she works with you</h3><p>Her approach is evidence-based, without fad diets. She builds nutrition plans around your labs, culture, budget and schedule, and coordinates with your doctors when your care calls for it.</p></div>
-        <div><h3 className="display text-3xl text-foreground mb-3">Care for every table</h3><p>Food is tied to family, culture and faith. Deepthi speaks English, Hindi and Telugu and is plant-based nutrition certified, and she adapts plans to vegetarian, vegan and traditional ways of eating rather than asking you to give up the dishes you grew up with. Whatever your background, body size or health history, you’ll be met without judgment.</p></div>
+      <div><p className="eyebrow mb-4">ABOUT DEEPTHI</p><h2 className="display text-4xl md:text-5xl">Hi, I'm Deepthi.</h2></div>
+      <div className="space-y-6 text-muted-foreground">
+        <p>I'm a Registered Dietitian and Licensed Nutritionist with over 15 years of experience helping individuals and families transform their health through sustainable, culturally sensitive, and evidence-based nutrition care. My passion lies in empowering people to make meaningful, lasting changes that support their physical, mental, and emotional well-being.</p>
+        <p>Over the years, I've worked with clients across a wide range of health goals, including diabetes prevention and management, sustainable weight loss, digestive health, pre- and post-bariatric surgery care, and adopting plant-forward, culturally tailored eating patterns. I believe that food should be both nourishing and enjoyable, and my mission is to help you find a balanced approach that truly works for your life.</p>
+        <p>My background spans hospital bariatric care, health-plan strategy and clinical program design, and I served as President of the Delaware Academy of Nutrition and Dietetics (2012–2014).</p>
       </div>
+    </div></section>
+    <section className="section bg-pale"><div className="container-site">
+      <div className="grid md:grid-cols-[1fr_1.5fr] gap-10 md:gap-16">
+        <div><p className="eyebrow mb-4">APPROACH TO CARE</p><h2 className="display text-4xl md:text-5xl">Personalized, never one-size-fits-all.</h2></div>
+        <div className="space-y-6 text-muted-foreground">
+          <p>My approach is holistic, motivational, and highly personalized. I meet you where you are—whether you're just starting your wellness journey or refining existing habits—and work collaboratively to create a plan that fits seamlessly into your daily life.</p>
+          <p>I don't believe in one-size-fits-all diets, rigid meal plans, or quick fixes. Instead, I focus on practical strategies that respect your culture, preferences, and lifestyle, while drawing on the latest nutrition science. Together, we'll build a flexible plan that supports your goals and empowers you to make confident food choices without feeling restricted or overwhelmed.</p>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-10">{careApproach.map(({ label, icon: Icon }) => <div key={label} className="rounded-lg border border-border bg-card p-5"><Icon className="size-6 text-brand-text mb-3" aria-hidden="true" /><p className="font-semibold text-sm">{label}</p></div>)}</div>
+    </div></section>
+    <section className="section"><div className="container-site grid md:grid-cols-[1fr_1.5fr] gap-10 md:gap-16">
+      <div><p className="eyebrow mb-4">YOUR FIRST SESSION</p><h2 className="display text-4xl md:text-5xl">Your first session is all about you.</h2></div>
+      <div className="space-y-6 text-muted-foreground">
+        <p>We'll take time to understand your health history, current lifestyle, personal goals, cultural preferences, and any challenges you're facing. I'll ask thoughtful questions to get a clear picture of where you are and where you'd like to be.</p>
+        <p className="font-semibold text-foreground">By the end of the session, you can expect to:</p>
+        <ul className="space-y-4">{sessionExpectations.map(item => <li key={item} className="flex items-start gap-3"><Check className="size-5 shrink-0 text-brand-text mt-0.5" aria-hidden="true" /><span>{item}</span></li>)}</ul>
+        <p>My goal is to make you feel comfortable, informed, and excited about the changes ahead.</p>
+        <BookButton>Book your first session</BookButton>
+      </div>
+    </div></section>
+    <section className="section"><div className="container-site">
+      <p className="eyebrow mb-4">WHAT I HELP WITH</p><h2 className="display text-4xl md:text-5xl mb-8">Conditions and goals I support</h2>
+      <ul className="flex flex-wrap gap-2">{supportedGoals.map(goal => <li key={goal} className="max-w-full rounded-full bg-secondary px-4 py-2 text-sm text-foreground">{goal}</li>)}</ul>
+      <h3 className="font-display text-2xl mt-10 mb-4">Familiar cuisines</h3>
+      <ul className="flex flex-wrap gap-2">{familiarCuisines.map(cuisine => <li key={cuisine} className="max-w-full rounded-full bg-secondary px-3 py-1.5 text-sm text-foreground">{cuisine}</li>)}</ul>
     </div></section>
     <section className="section bg-pale"><div className="container-site"><p className="eyebrow mb-4">WAYS TO WORK TOGETHER</p><h2 className="display text-4xl md:text-5xl mb-10">Support in the format that fits.</h2><div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">{formats.map(([title, copy, slug]) => <div key={title} className="card-frame p-6 flex flex-col"><h3 className="display text-2xl">{title}</h3><p className="text-muted-foreground text-sm mt-3 flex-1">{copy}</p>{slug ? <Link to="/conditions/$slug" params={{ slug }} className="text-brand-text font-semibold text-sm mt-5">Learn more →</Link> : null}</div>)}</div><div className="border-t border-border mt-12 pt-6"><p className="eyebrow mb-2">WHERE SHE PRACTICES</p><p className="text-lg">Video visits for clients located in {statesLabel}.</p></div></div></section>
     <section className="section"><div className="container-site"><p className="eyebrow mb-4">BACKGROUND</p><h2 className="display text-4xl md:text-5xl mb-10">Education and experience</h2>
       <div className="grid md:grid-cols-2 gap-x-16 gap-y-10">
-        <div className="border-t border-border pt-5"><h3 className="font-display text-2xl mb-4">Education</h3><ul className="space-y-3"><li>MS, Health Promotion — University of Delaware</li><li>MSc, Foods & Nutrition — Acharya N.G. Ranga Agricultural University</li></ul></div>
-        <div className="border-t border-border pt-5"><h3 className="font-display text-2xl mb-4">Certifications &amp; licenses</h3><ul className="space-y-3"><li>Registered Dietitian Nutritionist (RDN)</li><li>Licensed Dietitian (LDN) · License #{site.license}</li><li>National Diabetes Prevention Program (NDPP) Lifestyle Coach</li><li>Plant-Based Nutrition Certification</li></ul></div>
+        <div className="border-t border-border pt-5"><h3 className="font-display text-2xl mb-4">Education</h3><ul className="space-y-3"><li>MS, Health Promotion — University of Delaware</li><li>MSc, Foods & Nutrition — Acharya N.G. Ranga Agricultural University, India</li></ul></div>
+        <div className="border-t border-border pt-5"><h3 className="font-display text-2xl mb-4">Certifications &amp; licenses</h3><ul className="space-y-3"><li>Registered Dietitian Nutritionist (RDN)</li><li>Licensed Dietitian (LDN) · License #{site.license}</li><li>CDC Diabetes Prevention Program Lifestyle Coach</li><li>Certified Plant-Based Nutrition Specialist</li></ul></div>
         <div className="border-t border-border pt-5"><h3 className="font-display text-2xl mb-4">Languages</h3><p>English · Hindi · Telugu</p></div>
         <div className="border-t border-border pt-5"><h3 className="font-display text-2xl mb-4">Professional roles</h3><ul className="divide-y divide-border">{roles.map(([role, organization, years]) => <li key={`${role}-${organization}`} className="py-3 first:pt-0"><strong className="block">{role}</strong><span className="text-sm text-muted-foreground">{organization} · {years}</span></li>)}</ul></div>
       </div>
     </div></section>
     <section className="section bg-pale"><div className="container-site"><p className="eyebrow mb-4">AREAS OF CARE</p><h2 className="display text-4xl md:text-5xl mb-8">Find support for your needs.</h2><div className="grid md:grid-cols-2 gap-x-12 border-t border-border">{conditions.map(c => <Link key={c.slug} to="/conditions/$slug" params={{slug:c.slug}} className="flex items-center justify-between gap-4 border-b border-border py-5 group"><span className="font-display text-2xl group-hover:text-primary">{c.name}</span><ArrowUpRight className="size-5 shrink-0 text-brand-text" /></Link>)}</div></div></section>
+    <section className="section"><div className="container-site max-w-3xl"><p className="eyebrow mb-4">BEYOND THE CLINIC</p><p className="body-lede">Beyond my professional life, I love exploring global food traditions, practicing yoga to maintain balance and mindfulness, and experimenting in the kitchen with plant-based recipes that are both nourishing and flavorful. These passions remind me daily that food is more than just fuel—it's connection, culture, comfort, and celebration.</p></div></section>
     <section className="bg-cta py-12 text-primary-foreground"><div className="container-site flex flex-col md:flex-row md:items-center justify-between gap-6"><div><p className="font-mono text-xs">VIDEO CARE IN {site.states.length} STATES</p><h2 className="display text-4xl mt-2">Ready to talk through your goals?</h2></div><BookButton variant="outline" className="bg-white border-white text-brand-text shrink-0 hover:bg-cta-soft">Book an appointment</BookButton></div></section>
   </main>;
 }
