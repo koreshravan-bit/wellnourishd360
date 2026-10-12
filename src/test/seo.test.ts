@@ -52,6 +52,34 @@ describe.skipIf(!outDir)('prerendered JSON-LD', () => {
         for (const u of collectUrls(data)) expect(u, `${file}: ${u}`).toMatch(/^https:\/\/wellnourishd360\.com(\/|$)/);
       }
     }
-    expect(blocks).toBe(19);
+    expect(blocks).toBe(20);
+  });
+});
+
+describe('answer-first condition content', () => {
+  it('gives every condition a search title of at most 60 characters', () => { for (const c of conditions) { expect(c.seoTitle, c.slug).toBeTruthy(); expect(c.seoTitle.length, c.slug).toBeLessThanOrEqual(60); } });
+  it('gives every condition a question and a 40–60 word answer starting with "Yes."', () => {
+    for (const c of conditions) {
+      expect(c.answerQuestion.endsWith('?'), c.slug).toBe(true);
+      expect(c.answer.startsWith('Yes.'), c.slug).toBe(true);
+      const words = c.answer.split(/\s+/).length;
+      expect(words, c.slug).toBeGreaterThanOrEqual(40); expect(words, c.slug).toBeLessThanOrEqual(60);
+    }
+  });
+  it('lists /locations as a public path', () => { expect(sitePaths).toContain('/locations'); });
+});
+
+const pageFile = (path: string) => join(outDir!, `${path.slice(1)}.html`);
+describe.skipIf(!outDir)('prerendered AEO pages', () => {
+  it('renders /locations with one H2 per practice state', () => {
+    const html = readFileSync(pageFile('/locations'), 'utf8');
+    const h2s = [...html.matchAll(/<h2[^>]*>([^<]*)<\/h2>/g)].map(m => m[1]);
+    expect(site.states).toHaveLength(17);
+    for (const name of ['Arizona', 'New Jersey', 'Wisconsin']) expect(h2s).toContain(name);
+    expect(h2s.filter(h => ['Arizona','California','Colorado','Connecticut','Delaware','Hawaii','Indiana','Massachusetts','Michigan','New Jersey','New York','Oklahoma','Oregon','Pennsylvania','Texas','Virginia','Wisconsin'].includes(h ?? ''))).toHaveLength(17);
+  });
+  it('has FAQPage JSON-LD on home and about', () => {
+    expect(readFileSync(join(outDir!, 'index.html'), 'utf8')).toContain('"@type":"FAQPage"');
+    expect(readFileSync(pageFile('/about'), 'utf8')).toContain('"@type":"FAQPage"');
   });
 });
