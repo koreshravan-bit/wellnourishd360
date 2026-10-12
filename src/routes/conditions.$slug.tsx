@@ -26,10 +26,10 @@ function ConditionPage() {
         <div className="flex flex-wrap gap-3 mt-8"><BookButton service={c.service}>{c.bookLabel}</BookButton><ActionLink to="/insurance">Is it covered?</ActionLink></div>
       </div><ConditionProgress progress={c.progress} /></div>
     </div></section>
-    <section className="section pb-0" aria-labelledby="answer-heading"><div className="container-site grid lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16">
+    <section className="section pb-0" aria-labelledby="answer-heading"><div className="container-site grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 [&>*]:min-w-0">
       <div><h2 id="answer-heading" className="display text-3xl md:text-4xl">{c.answerQuestion}</h2><p className="body-lede mt-5">{c.answer}</p></div>
       <div className="card-frame p-6"><p className="eyebrow mb-4">At a glance</p><dl className="divide-y divide-border text-sm">
-        {([['Dietitian', `${site.dietitian}, ${site.credentials}`], ['Visit format', 'Secure video'], ['First visit', '60 minutes'], ['Where', <Link key="w" to="/locations" className="text-brand-text font-semibold underline underline-offset-2">{site.states.length} states</Link>], ['Insurance', 'Most major plans; self-pay available'], ['How to book', <BookButton key="b" service={c.service} className="mt-1">{c.bookLabel}</BookButton>]] as [string, React.ReactNode][]).map(([term, value]) => <div key={term} className="grid grid-cols-[110px_1fr] gap-3 py-2.5 items-center"><dt className="font-semibold">{term}</dt><dd className="text-muted-foreground">{value}</dd></div>)}
+        {([['Dietitian', `${site.dietitian}, ${site.credentials}`], ['Visit format', 'Secure video'], ['First visit', '60 minutes'], ['Where', <Link key="w" to="/locations" className="text-brand-text font-semibold underline underline-offset-2">{site.states.length} states</Link>], ['Insurance', 'Most major plans; self-pay available'], ['How to book', <BookButton key="b" service={c.service} className="mt-1">{c.bookLabel}</BookButton>]] as [string, React.ReactNode][]).map(([term, value]) => <div key={term} className="grid grid-cols-[110px_minmax(0,1fr)] gap-3 py-2.5 items-center"><dt className="font-semibold">{term}</dt><dd className="text-muted-foreground">{value}</dd></div>)}
       </dl></div>
     </div></section>
     <section className="section"><div className="container-site grid md:grid-cols-2 gap-12 md:gap-20">
