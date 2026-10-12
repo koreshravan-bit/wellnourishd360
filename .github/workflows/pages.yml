@@ -30,7 +30,8 @@ jobs:
           if [ -f .output/public/index.html ]; then OUT=.output/public; else OUT=dist/client; fi
           test -f "$OUT/index.html"
           rm -rf site && cp -r "$OUT" site
-          cp site/404/index.html site/404.html
+          if [ ! -f site/404.html ] && [ -f site/404/index.html ]; then cp site/404/index.html site/404.html; fi
+          test -f site/404.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
