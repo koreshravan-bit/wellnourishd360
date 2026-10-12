@@ -3,22 +3,15 @@ import { ArrowUpRight, Check, Leaf, Dumbbell, Microscope, Handshake } from 'luci
 import { BookButton, ActionLink } from '@/components/site';
 import { DietitianPhoto } from '@/components/dietitian-photo';
 import { conditions } from '@/content/conditions';
-import { pageHead, site, statesLabel } from '@/config/site';
+import { pageHead, site, statesLabel, hasLicense } from '@/config/site';
+import { ldScript, personNode } from '@/lib/schema';
+
+const HERO_LEDE = 'A registered dietitian and licensed nutritionist with over 15 years of experience helping individuals and families transform their health through sustainable, culturally sensitive, evidence-based nutrition care.';
 
 export const Route = createFileRoute('/about')({
   head: () => ({
     ...pageHead(`About ${site.dietitian}, ${site.credentials}`, `Meet Deepthi Harkar, MS, RDN, LDN: a registered dietitian with over 15 years of experience offering personalized, culturally sensitive, evidence-based nutrition care by video in ${site.states.length} states.`, '/about'),
-    scripts: [{ type: 'application/ld+json', children: JSON.stringify({
-      '@context': 'https://schema.org', '@type': 'Person', name: site.dietitian,
-      honorificSuffix: site.credentials, jobTitle: 'Registered Dietitian Nutritionist',
-      description: 'A registered dietitian and licensed nutritionist with over 15 years of experience helping individuals and families transform their health through sustainable, culturally sensitive, evidence-based nutrition care.',
-      alumniOf: [{ '@type': 'CollegeOrUniversity', name: 'University of Delaware' }, { '@type': 'CollegeOrUniversity', name: 'Acharya N.G. Ranga Agricultural University' }],
-      knowsLanguage: ['English', 'Hindi', 'Telugu'],
-      memberOf: { '@type': 'Organization', name: 'Delaware Academy of Nutrition and Dietetics' },
-      affiliation: { '@type': 'Organization', name: 'Nutrihealth Foundation' },
-      identifier: site.npi,
-      image: site.url ? `${site.url.replace(/\/$/, '')}${import.meta.env.BASE_URL}images/deepthi-harkar.webp` : undefined,
-    }) }],
+    scripts: [ldScript({ ...personNode(HERO_LEDE), memberOf: { '@type': 'Organization', name: 'Delaware Academy of Nutrition and Dietetics' }, affiliation: { '@type': 'Organization', name: 'Nutrihealth Foundation' } })],
   }),
   component: About,
 });
@@ -69,7 +62,7 @@ function About() {
   return <main>
     <section className="section bg-pale"><div className="container-site grid md:grid-cols-2 gap-12 items-center">
       <div><p className="eyebrow mb-5">MEET YOUR DIETITIAN</p><h1 className="display text-5xl md:text-6xl">{site.dietitian}, {site.credentials}</h1><p className="body-lede mt-6">A registered dietitian and licensed nutritionist with over 15 years of experience helping individuals and families transform their health through sustainable, culturally sensitive, evidence-based nutrition care.</p><div className="flex flex-wrap gap-3 mt-7"><BookButton>Book an appointment</BookButton><ActionLink to="/insurance">Check my insurance</ActionLink></div></div>
-      <DietitianPhoto className="h-[370px] md:h-[500px] w-full rounded-t-[170px] rounded-b-xl" />
+      <DietitianPhoto priority className="h-[370px] md:h-[500px] w-full rounded-t-[170px] rounded-b-xl" />
     </div></section>
     <section className="section"><div className="container-site grid md:grid-cols-[1fr_1.5fr] gap-10 md:gap-16">
       <div><p className="eyebrow mb-4">ABOUT DEEPTHI</p><h2 className="display text-4xl md:text-5xl">Hi, I'm Deepthi.</h2></div>
@@ -109,7 +102,7 @@ function About() {
     <section className="section"><div className="container-site"><p className="eyebrow mb-4">BACKGROUND</p><h2 className="display text-4xl md:text-5xl mb-10">Education and experience</h2>
       <div className="grid md:grid-cols-2 gap-x-16 gap-y-10">
         <div className="border-t border-border pt-5"><h3 className="font-display text-2xl mb-4">Education</h3><ul className="space-y-3"><li>MS, Health Promotion — University of Delaware</li><li>MSc, Foods & Nutrition — Acharya N.G. Ranga Agricultural University, India</li></ul></div>
-        <div className="border-t border-border pt-5"><h3 className="font-display text-2xl mb-4">Certifications &amp; licenses</h3><ul className="space-y-3"><li>Registered Dietitian Nutritionist (RDN)</li><li>Licensed Dietitian (LDN) · License #{site.license}</li><li>CDC Diabetes Prevention Program Lifestyle Coach</li><li>Certified Plant-Based Nutrition Specialist</li></ul></div>
+        <div className="border-t border-border pt-5"><h3 className="font-display text-2xl mb-4">Certifications &amp; licenses</h3><ul className="space-y-3"><li>Registered Dietitian Nutritionist (RDN)</li><li>Licensed Dietitian (LDN){hasLicense && <> · License #{site.license}</>}</li><li>CDC Diabetes Prevention Program Lifestyle Coach</li><li>Certified Plant-Based Nutrition Specialist</li></ul></div>
         <div className="border-t border-border pt-5"><h3 className="font-display text-2xl mb-4">Languages</h3><p>English · Hindi · Telugu</p></div>
         <div className="border-t border-border pt-5"><h3 className="font-display text-2xl mb-4">Professional roles</h3><ul className="divide-y divide-border">{roles.map(([role, organization, years]) => <li key={`${role}-${organization}`} className="py-3 first:pt-0"><strong className="block">{role}</strong><span className="text-sm text-muted-foreground">{organization} · {years}</span></li>)}</ul></div>
       </div>
