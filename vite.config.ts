@@ -16,7 +16,7 @@ const categories = ["diabetes", "pcos", "glp-1", "kidney", "heart", "recipes", "
 const paths = ["/", "/insurance", "/about", "/blog", "/privacy", "/notice-of-privacy-practices", "/terms", ...care.map((slug) => `/conditions/${slug}`), ...categories.map((cat) => `/blog/category/${cat}`), ...articles.map((slug) => `/blog/${slug}`)];
 
 export default defineConfig({
-  vite: { base: process.env["VITE_BASE_PATH"] || "/" },
+  vite: { base: "/" },
   tanstackStart: {
     prerender: { enabled: true, crawlLinks: false },
     pages: paths.map((path) => ({ path, prerender: { enabled: true } })),
