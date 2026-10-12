@@ -1,7 +1,8 @@
 import { readFileSync, readdirSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 const url = process.env.VITE_SITE_URL?.replace(/\/$/, '');
-const out = 'dist/client';
+import { existsSync as __exists } from 'node:fs';
+const out = __exists('.output/public/index.html') ? '.output/public' : 'dist/client';
 if (!url) {
   console.log('Sitemap skipped: set VITE_SITE_URL to the public site URL.');
   process.exit(0);

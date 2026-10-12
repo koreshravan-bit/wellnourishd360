@@ -17,7 +17,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
       - name: Build prerendered pages
@@ -25,10 +25,15 @@ jobs:
           VITE_BASE_PATH: /
           VITE_SITE_URL: https://wellnourishd360.com
         run: bun run build
-      - run: cp dist/client/index.html dist/client/404.html
+      - name: Collect static site
+        run: |
+          if [ -f .output/public/index.html ]; then OUT=.output/public; else OUT=dist/client; fi
+          test -f "$OUT/index.html"
+          rm -rf site && cp -r "$OUT" site
+          cp site/index.html site/404.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/client
+          path: site
       - id: deployment
         uses: actions/deploy-pages@v4
