@@ -5,7 +5,10 @@
 - [x] Configure prerendering and GitHub Pages deployment with sitemap generation when the public URL is known.
 - [x] Enrich all condition content, personalize progress cards, and add related reading with tests.
 - [x] Replace placeholder logo with supplied full-color, white, and sun assets across site and browser icons.
-- [x] Recolor existing visual tokens and accents to match the green-and-gold brand.
+- [x] Match existing visual tokens and accents to the official plum-and-gold design system.
 - [x] Replace dietitian identity placeholders with Deepthi Harkar’s practice details across pages and metadata.
 - [x] Add Deepthi’s supplied biography and headshot fallbacks across the site.
 - [x] Apply the plum-and-gold color palette only; update color knowledge, run tests, and check five page types on desktop and mobile.
+- [x] Audit production colors and update official design guidance without changing copy, content, images, or logos.
+- [x] Check every content route and the 404 page on desktop and mobile; fix contrast and layout glitches.
+- [x] Run all tests and verify the finishing pass.
