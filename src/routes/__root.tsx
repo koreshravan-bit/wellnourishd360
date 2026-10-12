@@ -12,6 +12,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader, SiteFooter } from "@/components/site";
 import { NotFoundPage } from "@/components/not-found";
+import { site } from "@/config/site";
+import { gaLoaderScript } from "@/lib/analytics";
 
 function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
@@ -73,7 +75,7 @@ export const Route = createRootRoute({
       { rel: "alternate icon", href: `${import.meta.env.BASE_URL}favicon.ico`, type: "image/x-icon" },
       { rel: "apple-touch-icon", href: `${import.meta.env.BASE_URL}apple-touch-icon.png` },
     ],
-    scripts: [{ children: NON_PRIMARY_HOST_NOINDEX }],
+    scripts: [{ children: NON_PRIMARY_HOST_NOINDEX }, { children: gaLoaderScript(site.gaMeasurementId) }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
