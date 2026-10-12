@@ -9,3 +9,6 @@
 - [x] Replace dietitian identity placeholders with Deepthi Harkar’s practice details across pages and metadata.
 - [x] Add Deepthi’s supplied biography and headshot fallbacks across the site.
 - [x] Apply the plum-and-gold color palette only; update color knowledge, run tests, and check five page types on desktop and mobile.
+- [ ] Audit production colors and update official design guidance without changing copy, content, images, or logos.
+- [ ] Check every content route and the 404 page on desktop and mobile; fix contrast and layout glitches.
+- [ ] Run all tests and verify the finishing pass.
