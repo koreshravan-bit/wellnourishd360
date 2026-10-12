@@ -6,7 +6,7 @@ if (!url) {
   console.log('Sitemap skipped: set VITE_SITE_URL to the public site URL.');
   process.exit(0);
 }
-const care = ['diabetes','pcos','glp-1','kidney-health','heart-health','general-nutrition'];
+const care = ["diabetes", "pcos", "weight-management", "glp-1", "heart-health", "kidney-health", "plant-based", "intuitive-eating", "corporate-wellness", "group-family"];
 const categories = ['diabetes','pcos','glp-1','kidney','heart','recipes','videos'];
 const articles = readdirSync('src/content/blog').filter(f => f.endsWith('.md')).map(f => /\nslug:\s*([^\n]+)/.exec(readFileSync(join('src/content/blog',f),'utf8'))?.[1]?.trim()).filter(Boolean);
 const paths = ['','insurance','about','blog','privacy','notice-of-privacy-practices','terms',...care.map(x=>`conditions/${x}`),...categories.map(x=>`blog/category/${x}`),...articles.map(x=>`blog/${x}`)];

@@ -8,6 +8,7 @@ export const site = {
   hours: 'Mon–Thu, by appointment',
   license: '[pending]',
   npi: '1487042883',
+  states: ['AZ', 'CA', 'CO', 'CT', 'DE', 'HI', 'IN', 'MA', 'MI', 'NJ', 'NY', 'OK', 'OR', 'PA', 'TX', 'VA', 'WI'],
   url: import.meta.env['VITE_SITE_URL'] || '',
   booking: {
     default: 'https://secure.gethealthie.com/',
@@ -17,6 +18,11 @@ export const site = {
     kidney: 'https://secure.gethealthie.com/',
     heart: 'https://secure.gethealthie.com/',
     general: 'https://secure.gethealthie.com/',
+    weight: 'https://secure.gethealthie.com/',
+    plantBased: 'https://secure.gethealthie.com/',
+    intuitiveEating: 'https://secure.gethealthie.com/',
+    corporate: 'https://secure.gethealthie.com/',
+    group: 'https://secure.gethealthie.com/',
     insurance: 'https://secure.gethealthie.com/',
     selfPay: 'https://secure.gethealthie.com/',
     clientPortal: 'https://secure.gethealthie.com/',
@@ -27,6 +33,7 @@ export const site = {
     waivedLateCancellations: 2,
   },
 };
+export const statesLabel = site.states.join(', ');
 export type BookingService = keyof Omit<typeof site.booking, 'clientPortal'>;
 export const canonical = (path: string) => site.url ? `${site.url.replace(/\/$/, '')}${path}` : path;
 export const pageHead = (title: string, description: string, path: string, type = 'website') => ({
