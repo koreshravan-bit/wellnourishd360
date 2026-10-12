@@ -14,6 +14,7 @@ import { Route as R404RouteImport } from './routes/404'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as InsuranceRouteImport } from './routes/insurance'
+import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as NoticeOfPrivacyPracticesRouteImport } from './routes/notice-of-privacy-practices'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as TermsRouteImport } from './routes/terms'
@@ -45,6 +46,11 @@ const BlogRoute = BlogRouteImport.update({
 const InsuranceRoute = InsuranceRouteImport.update({
   id: '/insurance',
   path: '/insurance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsRoute = LocationsRouteImport.update({
+  id: '/locations',
+  path: '/locations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NoticeOfPrivacyPracticesRoute =
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/blog': typeof BlogRouteWithChildren
   '/insurance': typeof InsuranceRoute
+  '/locations': typeof LocationsRoute
   '/notice-of-privacy-practices': typeof NoticeOfPrivacyPracticesRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByTo {
   '/404': typeof R404Route
   '/about': typeof AboutRoute
   '/insurance': typeof InsuranceRoute
+  '/locations': typeof LocationsRoute
   '/notice-of-privacy-practices': typeof NoticeOfPrivacyPracticesRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
@@ -118,6 +126,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/blog': typeof BlogRouteWithChildren
   '/insurance': typeof InsuranceRoute
+  '/locations': typeof LocationsRoute
   '/notice-of-privacy-practices': typeof NoticeOfPrivacyPracticesRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
@@ -134,6 +143,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/blog'
     | '/insurance'
+    | '/locations'
     | '/notice-of-privacy-practices'
     | '/privacy'
     | '/terms'
@@ -147,6 +157,7 @@ export interface FileRouteTypes {
     | '/404'
     | '/about'
     | '/insurance'
+    | '/locations'
     | '/notice-of-privacy-practices'
     | '/privacy'
     | '/terms'
@@ -161,6 +172,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/blog'
     | '/insurance'
+    | '/locations'
     | '/notice-of-privacy-practices'
     | '/privacy'
     | '/terms'
@@ -176,6 +188,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BlogRoute: typeof BlogRouteWithChildren
   InsuranceRoute: typeof InsuranceRoute
+  LocationsRoute: typeof LocationsRoute
   NoticeOfPrivacyPracticesRoute: typeof NoticeOfPrivacyPracticesRoute
   PrivacyRoute: typeof PrivacyRoute
   TermsRoute: typeof TermsRoute
@@ -217,6 +230,13 @@ declare module '@tanstack/react-router' {
       path: '/insurance'
       fullPath: '/insurance'
       preLoaderRoute: typeof InsuranceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations': {
+      id: '/locations'
+      path: '/locations'
+      fullPath: '/locations'
+      preLoaderRoute: typeof LocationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/notice-of-privacy-practices': {
@@ -291,6 +311,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BlogRoute: BlogRouteWithChildren,
   InsuranceRoute: InsuranceRoute,
+  LocationsRoute: LocationsRoute,
   NoticeOfPrivacyPracticesRoute: NoticeOfPrivacyPracticesRoute,
   PrivacyRoute: PrivacyRoute,
   TermsRoute: TermsRoute,

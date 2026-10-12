@@ -1,4 +1,4 @@
-import type { BookingService } from '@/config/site';
+import { site, type BookingService } from '@/config/site';
 
 export type Progress = {
   chartLabel: string;
@@ -12,6 +12,11 @@ export type Progress = {
 };
 export type Condition = {
   slug: string;
+  /** Search title, before " | WellNourishD360". */
+  seoTitle: string;
+  /** Answer-first summary: the question people ask and a 40–60 word answer. */
+  answerQuestion: string;
+  answer: string;
   category: 'clinical' | 'lifestyle' | 'groups';
   name: string;
   short: string;
@@ -32,11 +37,15 @@ export type Condition = {
   faq: [string, string][];
 };
 
+// Shared answer frame; only the care-specific middle differs per page.
+const answer = (help: string) => `Yes. ${site.dietitian}, ${site.credentials}, is a registered dietitian who can help you ${help}. Visits are by secure video for clients located in ${site.states.length} states. Most major insurance plans are accepted, and self-pay is available.`;
+
 const medicareCoverage = 'Medicare Part B covers medical nutrition therapy for diabetes and chronic kidney disease with a doctor’s referral, and many private plans do too.';
 const otherCoverage = 'Many plans cover nutrition visits for this when there’s a related diagnosis. We’ll check your benefits before your first visit.';
 
 export const conditions: Condition[] = [
   {
+    seoTitle: 'Diabetes Dietitian Online, Covered by Insurance', answerQuestion: 'Can a registered dietitian help with diabetes by video?', answer: answer('build satisfying meals, spot patterns in your labs or CGM data, and find a practical approach to carbohydrates'),
     slug: 'diabetes', category: 'clinical', name: 'Diabetes & prediabetes', short: 'A1C and glucose patterns, CGM review, carb awareness', eyebrow: 'DIABETES & PREDIABETES NUTRITION',
     title: 'Lower your A1C with meals you actually want to eat.',
     lede: 'Make sense of your numbers without giving up the foods you love. We’ll look at glucose patterns, medications, movement, and your real-life routine. Medicare Part B may cover medical nutrition therapy for eligible people with diabetes.',
@@ -60,6 +69,7 @@ export const conditions: Condition[] = [
     ],
   },
   {
+    seoTitle: 'PCOS Dietitian Online, Covered by Insurance', answerQuestion: 'Can a registered dietitian help with PCOS by video?', answer: answer('build balanced meals around your schedule, make sense of insulin and glucose labs with your care team, and plan satisfying snacks'),
     slug: 'pcos', category: 'clinical', name: 'PCOS', short: 'Insulin resistance, cycle regularity, energy and weight', eyebrow: 'PCOS NUTRITION',
     title: 'Find a steadier way to eat with PCOS.',
     lede: 'Support your energy, insulin resistance, and everyday eating without rigid rules or another restrictive diet. We’ll shape a plan around your symptoms, schedule and preferences.',
@@ -83,6 +93,7 @@ export const conditions: Condition[] = [
     ],
   },
   {
+    seoTitle: 'Weight Management Dietitian Online, Covered by Insurance', answerQuestion: 'Can a registered dietitian help with weight management by video?', answer: answer('build balanced, satisfying meals you can repeat, plan around hunger and fullness, and get pre- and post-bariatric nutrition support'),
     slug: 'weight-management', category: 'clinical', name: 'Obesity & weight management', short: 'Sustainable habits, bariatric and medical weight care', eyebrow: 'WEIGHT MANAGEMENT NUTRITION',
     title: 'Weight care that respects your body and your life.',
     lede: 'Build steady, realistic habits without crash diets. We’ll look at your health history, labs, medications and routines, and coordinate with your doctor when weight affects other conditions.',
@@ -106,6 +117,7 @@ export const conditions: Condition[] = [
     ],
   },
   {
+    seoTitle: 'GLP-1 Nutrition Support with a Dietitian Online', answerQuestion: 'Can a dietitian support me while I take a GLP-1 medication?', answer: answer('set practical protein goals with foods you tolerate, plan smaller meals for low-appetite days, and build a hydration routine'),
     slug: 'glp-1', category: 'clinical', name: 'GLP-1 medication support', short: 'Protein targets, side effects, keeping muscle and results', eyebrow: 'GLP-1 NUTRITION',
     title: 'Feel nourished while taking a GLP-1.',
     lede: 'Get practical support for protein, hydration, appetite changes and food-related side effects. We don’t prescribe medication; we work alongside your prescribing clinician.',
@@ -129,6 +141,7 @@ export const conditions: Condition[] = [
     ],
   },
   {
+    seoTitle: 'Heart-Healthy Nutrition with a Dietitian Online', answerQuestion: 'Can a registered dietitian help with cholesterol and blood pressure by video?', answer: answer('review cholesterol and blood pressure results, find enjoyable sources of soluble fiber, and choose fats and cooking methods that fit your meals'),
     slug: 'heart-health', category: 'clinical', name: 'Heart health', short: 'Cholesterol, blood pressure and heart-healthy eating', eyebrow: 'HEART HEALTH NUTRITION',
     title: 'Make heart-healthy eating feel doable.',
     lede: 'Work on cholesterol and blood pressure with food changes that leave room for meals you enjoy. We’ll use your numbers and your daily routine to choose a starting point.',
@@ -152,6 +165,7 @@ export const conditions: Condition[] = [
     ],
   },
   {
+    seoTitle: 'Renal (Kidney) Dietitian Online, Covered by Insurance', answerQuestion: 'Can a renal dietitian help with chronic kidney disease by video?', answer: answer('review recent labs and nephrology guidance, tailor potassium and phosphorus choices to your CKD stage, and find satisfying ways to manage sodium'),
     slug: 'kidney-health', category: 'clinical', name: 'Chronic kidney disease', short: 'Sodium, potassium and phosphorus plans by CKD stage', eyebrow: 'KIDNEY HEALTH NUTRITION',
     title: 'Eat well while caring for your kidneys.',
     lede: 'Kidney nutrition is not one-size-fits-all. Potassium and phosphorus needs depend on your labs, CKD stage and whether you receive dialysis. We coordinate your plan with your nephrology team.',
@@ -175,6 +189,7 @@ export const conditions: Condition[] = [
     ],
   },
   {
+    seoTitle: 'Plant-Based & Vegetarian Dietitian Online', answerQuestion: 'Can a dietitian help me eat a balanced plant-based diet?', answer: answer('plan protein from plant foods, pay attention to iron, B12, calcium and vitamin D, and adapt cultural and family recipes'),
     slug: 'plant-based', category: 'lifestyle', name: 'Plant-based, vegetarian & vegan', short: 'Balanced meat-free eating, protein, iron and B12', eyebrow: 'PLANT-BASED NUTRITION',
     title: 'Eat plants with confidence.',
     lede: 'Whether you’re fully vegan, vegetarian for cultural or religious reasons, or simply eating more plants, we’ll make sure your meals are balanced, satisfying and familiar.',
@@ -198,6 +213,7 @@ export const conditions: Condition[] = [
     ],
   },
   {
+    seoTitle: 'Intuitive Eating Dietitian Online', answerQuestion: 'Can a dietitian help with intuitive eating and my relationship with food?', answer: answer('rebuild regular, satisfying eating patterns, notice hunger and fullness, and gently question food rules and labels'),
     slug: 'intuitive-eating', category: 'lifestyle', name: 'Intuitive eating & relationship with food', short: 'Hunger cues, food guilt and leaving dieting behind', eyebrow: 'INTUITIVE EATING',
     title: 'A calmer relationship with food.',
     lede: 'Step away from the cycle of dieting and guilt. We’ll explore hunger and fullness, food rules and the role food plays in your life, at a pace that feels safe.',
@@ -221,6 +237,7 @@ export const conditions: Condition[] = [
     ],
   },
   {
+    seoTitle: 'Corporate Wellness Nutrition Programs', answerQuestion: 'Can a registered dietitian run corporate wellness programs online?', answer: answer('plan a single workshop or a multi-session series on topics such as energy, heart health or diabetes prevention'),
     slug: 'corporate-wellness', category: 'groups', name: 'Corporate wellness', short: 'Workplace workshops, wellness programs and lunch-and-learns', eyebrow: 'CORPORATE WELLNESS',
     title: 'Practical nutrition programs for your workplace.',
     lede: 'Bring evidence-based nutrition education to your team. Deepthi has designed data-driven workplace wellness programs for a major health plan and can tailor sessions to your organization.',
@@ -244,6 +261,7 @@ export const conditions: Condition[] = [
     ],
   },
   {
+    seoTitle: 'Family & Group Nutrition Sessions Online', answerQuestion: 'Can a dietitian run family or group nutrition sessions by video?', answer: answer('plan meals that work for several needs at once, make shopping and cooking manageable, and share ideas in a small group'),
     slug: 'group-family', category: 'groups', name: 'Group sessions & family nutrition', short: 'Small-group programs and nutrition for the whole household', eyebrow: 'GROUP & FAMILY NUTRITION',
     title: 'Learn together, eat together.',
     lede: 'Small-group sessions offer support and shared ideas, and family visits help everyone at the table. We’ll find meals that work for different ages, needs and traditions.',
