@@ -12,3 +12,7 @@
 - Serve brand SVGs from public/brand through the Vite base path so the same markup works at repository-hosted URLs.
 - Load the dietitian portrait from public/images through the Vite base path and retain a placeholder fallback until the real photo is supplied.
 - Derive the standalone error page's palette from the root tokens in src/styles.css at bundle time, so error screens cannot drift from the official design system.
+- Keep every public path in scripts/site-routes.mjs and derive prerender pages, the sitemap and route tests from it, so the three never drift.
+- Render blog Markdown to HTML at build time (scripts/blog-markdown.mjs, `?meta`/`?html` imports) so Markdown libraries never ship to the browser.
+- Build absolute URLs and JSON-LD from site.url (defaulting to the custom domain) via src/lib/schema.ts, because the .com is the only public site.
+- Generate robots.txt, sitemap.xml and llms.txt after the build from site config and content, rather than keeping static copies that go stale.

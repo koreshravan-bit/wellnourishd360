@@ -1,6 +1,14 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "@fontsource/newsreader/latin-400.css";
+@import "@fontsource/newsreader/latin-600.css";
+@import "@fontsource/karla/latin-400.css";
+@import "@fontsource/karla/latin-500.css";
+@import "@fontsource/karla/latin-600.css";
+@import "@fontsource/karla/latin-700.css";
+@import "@fontsource/ibm-plex-mono/latin-400.css";
+@import "@fontsource/ibm-plex-mono/latin-500.css";
 @custom-variant dark (&:is(.dark *));
 @theme inline {
   --color-background: var(--background); --color-foreground: var(--foreground); --color-card: var(--card); --color-card-foreground: var(--foreground); --color-primary: var(--primary); --color-brand-text: var(--brand-text); --color-primary-foreground: var(--white); --color-secondary: var(--secondary); --color-secondary-foreground: var(--foreground); --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground); --color-accent: var(--accent); --color-accent-foreground: var(--foreground); --color-border: var(--border); --color-input: var(--border); --color-ring: var(--amber); --color-navy: var(--navy); --color-paper: var(--paper); --color-pale: var(--pale); --color-pale-2: var(--pale-2); --color-cta: var(--cta); --color-cta-hover: var(--cta-hover); --color-cta-soft: var(--cta-soft); --color-amber: var(--amber); --color-amber-soft: var(--amber-soft); --color-white: var(--white); --font-display: 'Newsreader', Georgia, serif; --font-sans: 'Karla', Arial, sans-serif; --font-mono: 'IBM Plex Mono', monospace;

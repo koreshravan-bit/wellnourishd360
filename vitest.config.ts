@@ -1,9 +1,11 @@
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
+import { blogMarkdown } from "./scripts/blog-markdown.mjs";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), blogMarkdown()],
+  define: { __BUILD_DATE__: JSON.stringify(new Date().toISOString().slice(0, 10)) },
   test: {
     environment: "jsdom",
     globals: true,

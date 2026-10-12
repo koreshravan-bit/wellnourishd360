@@ -6,11 +6,12 @@ import { BlogCard } from './blog';
 import { conditionBySlug } from '@/content/conditions';
 import { posts } from '@/content/blog';
 import { pageHead, site } from '@/config/site';
+import { conditionNodes, ldScript } from '@/lib/schema';
 import { DietitianPhoto } from '@/components/dietitian-photo';
 
 export const Route = createFileRoute('/conditions/$slug')({
   loader: ({ params }) => { const condition = conditionBySlug(params.slug); if (!condition) throw notFound(); return condition; },
-  head: ({ loaderData, params }) => pageHead(loaderData?.name || 'Nutrition care', loaderData?.metaDescription || 'Nutrition care by video with a registered dietitian.', `/conditions/${params.slug}`),
+  head: ({ loaderData, params }) => ({ ...pageHead(loaderData?.name || 'Nutrition care', loaderData?.metaDescription || 'Nutrition care by video with a registered dietitian.', `/conditions/${params.slug}`), scripts: loaderData ? [ldScript(conditionNodes(loaderData))] : [] }),
   component: ConditionPage,
 });
 
