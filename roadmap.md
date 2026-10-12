@@ -12,3 +12,4 @@
 - [x] Audit production colors and update official design guidance without changing copy, content, images, or logos.
 - [x] Check every content route and the 404 page on desktop and mobile; fix contrast and layout glitches.
 - [x] Run all tests and verify the finishing pass.
+- [x] Ported 10 care areas and 17 practice states from the green project.

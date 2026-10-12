@@ -9,7 +9,11 @@ const expectedLabels = {
   'glp-1': 'Protein',
   'kidney-health': 'Potassium',
   'heart-health': 'LDL',
-  'general-nutrition': 'Home-cooked dinners',
+  'weight-management': 'Meals with protein + vegetables',
+  'plant-based': 'Plant protein',
+  'intuitive-eating': 'Regular meals',
+  'corporate-wellness': 'Workshop attendance',
+  'group-family': 'Family meals together',
 };
 
 describe('condition progress cards', () => {

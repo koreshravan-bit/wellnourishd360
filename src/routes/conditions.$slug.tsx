@@ -10,7 +10,7 @@ import { DietitianPhoto } from '@/components/dietitian-photo';
 
 export const Route = createFileRoute('/conditions/$slug')({
   loader: ({ params }) => { const condition = conditionBySlug(params.slug); if (!condition) throw notFound(); return condition; },
-  head: ({ loaderData, params }) => pageHead(loaderData?.name || 'Nutrition care', loaderData?.metaDescription || 'Nutrition care by video in New Jersey.', `/conditions/${params.slug}`),
+  head: ({ loaderData, params }) => pageHead(loaderData?.name || 'Nutrition care', loaderData?.metaDescription || 'Nutrition care by video with a registered dietitian.', `/conditions/${params.slug}`),
   component: ConditionPage,
 });
 

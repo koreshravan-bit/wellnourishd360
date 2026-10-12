@@ -11,7 +11,7 @@ const articles = readdirSync("src/content/blog").filter((file) => file.endsWith(
   const content = readFileSync(`src/content/blog/${file}`, "utf8");
   return /\nslug:\s*([^\n]+)/.exec(content)?.[1]?.trim() ?? file.replace(/\.md$/, "");
 });
-const care = ["diabetes", "pcos", "glp-1", "kidney-health", "heart-health", "general-nutrition"];
+const care = ["diabetes", "pcos", "weight-management", "glp-1", "heart-health", "kidney-health", "plant-based", "intuitive-eating", "corporate-wellness", "group-family"];
 const categories = ["diabetes", "pcos", "glp-1", "kidney", "heart", "recipes", "videos"];
 const paths = ["/", "/insurance", "/about", "/blog", "/privacy", "/notice-of-privacy-practices", "/terms", ...care.map((slug) => `/conditions/${slug}`), ...categories.map((cat) => `/blog/category/${cat}`), ...articles.map((slug) => `/blog/${slug}`)];
 
