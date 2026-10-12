@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { site } from '@/config/site';
-import { conditions } from '@/content/conditions';
+import { conditions, defaultInsuranceRow } from '@/content/conditions';
 import { posts } from '@/content/blog';
 describe('practice content rules', () => {
  it('uses the dietitian’s name', () => { expect(site.dietitian).toBe('Deepthi Harkar'); });
@@ -15,4 +15,7 @@ describe('practice content rules', () => {
  it('keeps a distinct dietitian introduction for each care page', () => { for (const condition of conditions) expect(condition.dietitianNote.length).toBeGreaterThan(30); expect(new Set(conditions.map(c => c.dietitianNote)).size).toBe(10); });
  it('lists all 17 licensed practice states', () => { expect(site.states).toEqual(['AZ','CA','CO','CT','DE','HI','IN','MA','MI','NJ','NY','OK','OR','PA','TX','VA','WI']); });
  it('keeps chronic kidney disease as a care area', () => { expect(conditions.some(c => c.slug === 'kidney-health')).toBe(true); });
+ it('bills corporate wellness programs to the organization', () => { const c = conditions.find(x => x.slug === 'corporate-wellness')!; expect(c.answerQuestion).toBe('Can a registered dietitian run nutrition programs for my workplace?'); expect(c.answer).toContain('billed directly to your organization after a short discovery call'); expect(c.answer).not.toContain('Most major insurance plans are accepted'); expect(c.insuranceRow).toBe('Billed to your organization'); expect(c.bookLabel).toBe('Request a corporate wellness call'); });
+ it('says group and family coverage varies by plan', () => { const c = conditions.find(x => x.slug === 'group-family')!; expect(c.answer.startsWith('Yes.'), c.slug).toBe(true); expect(c.answer).toContain('Coverage for group and family visits varies by plan and diagnosis, so we check your benefits before you book; self-pay is also available.'); expect(c.answer).not.toContain('Most major insurance plans are accepted'); expect(c.insuranceRow).toBe('Varies by plan; self-pay available'); });
+ it('keeps one default insurance row for the other eight care areas', () => { expect(defaultInsuranceRow).toBe('Most major plans; self-pay available'); expect(conditions.filter(c => c.insuranceRow).map(c => c.slug).sort()).toEqual(['corporate-wellness', 'group-family']); for (const c of conditions.filter(x => !x.insuranceRow)) expect(c.answer).toContain('Most major insurance plans are accepted'); });
 });

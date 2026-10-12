@@ -17,6 +17,8 @@ export type Condition = {
   /** Answer-first summary: the question people ask and a 40–60 word answer. */
   answerQuestion: string;
   answer: string;
+  /** "At a glance" Insurance row; falls back to defaultInsuranceRow. */
+  insuranceRow?: string;
   category: 'clinical' | 'lifestyle' | 'groups';
   name: string;
   short: string;
@@ -38,7 +40,9 @@ export type Condition = {
 };
 
 // Shared answer frame; only the care-specific middle differs per page.
-const answer = (help: string) => `Yes. ${site.dietitian}, ${site.credentials}, is a registered dietitian who can help you ${help}. Visits are by secure video for clients located in ${site.states.length} states. Most major insurance plans are accepted, and self-pay is available.`;
+export const defaultInsuranceRow = 'Most major plans; self-pay available';
+const answerWith = (help: string, insurance: string) => `Yes. ${site.dietitian}, ${site.credentials}, is a registered dietitian who can help you ${help}. Visits are by secure video for clients located in ${site.states.length} states. ${insurance}`;
+const answer = (help: string) => answerWith(help, 'Most major insurance plans are accepted, and self-pay is available.');
 
 const medicareCoverage = 'Medicare Part B covers medical nutrition therapy for diabetes and chronic kidney disease with a doctor’s referral, and many private plans do too.';
 const otherCoverage = 'Many plans cover nutrition visits for this when there’s a related diagnosis. We’ll check your benefits before your first visit.';
@@ -237,7 +241,7 @@ export const conditions: Condition[] = [
     ],
   },
   {
-    seoTitle: 'Corporate Wellness Nutrition Programs', answerQuestion: 'Can a registered dietitian run corporate wellness programs online?', answer: answer('plan a single workshop or a multi-session series on topics such as energy, heart health or diabetes prevention'),
+    seoTitle: 'Corporate Wellness Nutrition Programs', answerQuestion: 'Can a registered dietitian run nutrition programs for my workplace?', insuranceRow: 'Billed to your organization', answer: `Yes. ${site.dietitian}, ${site.credentials}, designs and delivers virtual nutrition workshops, lunch-and-learns and multi-session programs for teams, drawing on her experience designing workplace wellness programs for a major health plan. Sessions are by live video, and programs are billed directly to your organization after a short discovery call.`,
     slug: 'corporate-wellness', category: 'groups', name: 'Corporate wellness', short: 'Workplace workshops, wellness programs and lunch-and-learns', eyebrow: 'CORPORATE WELLNESS',
     title: 'Practical nutrition programs for your workplace.',
     lede: 'Bring evidence-based nutrition education to your team. Deepthi has designed data-driven workplace wellness programs for a major health plan and can tailor sessions to your organization.',
@@ -261,7 +265,7 @@ export const conditions: Condition[] = [
     ],
   },
   {
-    seoTitle: 'Family & Group Nutrition Sessions Online', answerQuestion: 'Can a dietitian run family or group nutrition sessions by video?', answer: answer('plan meals that work for several needs at once, make shopping and cooking manageable, and share ideas in a small group'),
+    seoTitle: 'Family & Group Nutrition Sessions Online', answerQuestion: 'Can a dietitian run family or group nutrition sessions by video?', insuranceRow: 'Varies by plan; self-pay available', answer: answerWith('plan meals for the whole household and share ideas together', 'Coverage for group and family visits varies by plan and diagnosis, so we check your benefits before you book; self-pay is also available.'),
     slug: 'group-family', category: 'groups', name: 'Group sessions & family nutrition', short: 'Small-group programs and nutrition for the whole household', eyebrow: 'GROUP & FAMILY NUTRITION',
     title: 'Learn together, eat together.',
     lede: 'Small-group sessions offer support and shared ideas, and family visits help everyone at the table. We’ll find meals that work for different ages, needs and traditions.',
