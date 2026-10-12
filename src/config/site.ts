@@ -8,6 +8,7 @@ export const site = {
   hours: 'Mon–Thu, by appointment',
   license: '[pending]',
   npi: '1487042883',
+  gaMeasurementId: 'G-6KE9QF22XN',
   states: ['AZ', 'CA', 'CO', 'CT', 'DE', 'HI', 'IN', 'MA', 'MI', 'NJ', 'NY', 'OK', 'OR', 'PA', 'TX', 'VA', 'WI'],
   // The only public site. Absolute URLs (canonical, og:url, JSON-LD) always point here.
   url: (import.meta.env?.['VITE_SITE_URL'] as string | undefined) || 'https://wellnourishd360.com',
