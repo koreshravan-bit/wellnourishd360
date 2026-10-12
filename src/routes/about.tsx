@@ -1,17 +1,26 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { ArrowUpRight, Check, Leaf, Dumbbell, Microscope, Handshake } from 'lucide-react';
-import { BookButton, ActionLink } from '@/components/site';
+import { BookButton, ActionLink, FAQ, type FaqItem } from '@/components/site';
 import { DietitianPhoto } from '@/components/dietitian-photo';
 import { conditions } from '@/content/conditions';
-import { pageHead, site, statesLabel, hasLicense } from '@/config/site';
-import { ldScript, personNode } from '@/lib/schema';
+import { pageHead, site, statesLabel, hasLicense, stateNames } from '@/config/site';
+import { faqPage, ldScript, personNode } from '@/lib/schema';
+
+const fullStates = site.states.map((s) => stateNames[s] ?? s);
+const aboutFaq: FaqItem[] = [
+  ['Who is Deepthi Harkar?', `${site.dietitian}, ${site.credentials}, is a registered dietitian nutritionist and the founder of WellNourishD360. She has over 15 years of experience in nutrition and health care, including hospital bariatric care and health-plan program design, and now sees clients by secure video.`],
+  ["What are Deepthi Harkar's credentials?", `She holds an MS in Health Promotion from the University of Delaware and an MSc in Foods & Nutrition from Acharya N.G. Ranga Agricultural University. She is a Registered Dietitian Nutritionist (RDN), a Licensed Dietitian Nutritionist (LDN), a CDC Diabetes Prevention Program Lifestyle Coach and a Certified Plant-Based Nutrition Specialist. Her NPI is ${site.npi}.`],
+  ['Which states can Deepthi see clients in?', `Video visits are available to clients located in ${fullStates.slice(0, -1).join(', ')} and ${fullStates.at(-1)} at the time of the visit.`, <>Video visits are available to clients located in {fullStates.slice(0, -1).join(', ')} and {fullStates.at(-1)} at the time of the visit. <Link to="/locations" className="text-brand-text font-semibold underline underline-offset-2">See where we practice</Link>.</>],
+  ['What languages does she speak?', 'Deepthi speaks English, Hindi and Telugu.'],
+  ['Does she accept insurance?', 'Yes. WellNourishD360 is in network with most major plans, including Aetna, Cigna, UnitedHealthcare, Horizon BCBS NJ and Medicare. Self-pay is also available.'],
+];
 
 const HERO_LEDE = 'A registered dietitian and licensed nutritionist with over 15 years of experience helping individuals and families transform their health through sustainable, culturally sensitive, evidence-based nutrition care.';
 
 export const Route = createFileRoute('/about')({
   head: () => ({
     ...pageHead(`About ${site.dietitian}, ${site.credentials}`, `Meet Deepthi Harkar, MS, RDN, LDN: a registered dietitian with over 15 years of experience offering personalized, culturally sensitive, evidence-based nutrition care by video in ${site.states.length} states.`, '/about'),
-    scripts: [ldScript({ ...personNode(HERO_LEDE), memberOf: { '@type': 'Organization', name: 'Delaware Academy of Nutrition and Dietetics' }, affiliation: { '@type': 'Organization', name: 'Nutrihealth Foundation' } })],
+    scripts: [ldScript([{ ...personNode(HERO_LEDE), memberOf: { '@type': 'Organization', name: 'Delaware Academy of Nutrition and Dietetics' }, affiliation: { '@type': 'Organization', name: 'Nutrihealth Foundation' } }, faqPage(aboutFaq, '/about')])],
   }),
   component: About,
 });
@@ -98,7 +107,7 @@ function About() {
       <h3 className="font-display text-2xl mt-10 mb-4">Familiar cuisines</h3>
       <ul className="flex flex-wrap gap-2">{familiarCuisines.map(cuisine => <li key={cuisine} className="max-w-full rounded-full bg-secondary px-3 py-1.5 text-sm text-foreground">{cuisine}</li>)}</ul>
     </div></section>
-    <section className="section bg-pale"><div className="container-site"><p className="eyebrow mb-4">WAYS TO WORK TOGETHER</p><h2 className="display text-4xl md:text-5xl mb-10">Support in the format that fits.</h2><div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">{formats.map(([title, copy, slug]) => <div key={title} className="card-frame p-6 flex flex-col"><h3 className="display text-2xl">{title}</h3><p className="text-muted-foreground text-sm mt-3 flex-1">{copy}</p>{slug ? <Link to="/conditions/$slug" params={{ slug }} className="text-brand-text font-semibold text-sm mt-5">Learn more →</Link> : null}</div>)}</div><div className="border-t border-border mt-12 pt-6"><p className="eyebrow mb-2">WHERE SHE PRACTICES</p><p className="text-lg">Video visits for clients located in {statesLabel}.</p></div></div></section>
+    <section className="section bg-pale"><div className="container-site"><p className="eyebrow mb-4">WAYS TO WORK TOGETHER</p><h2 className="display text-4xl md:text-5xl mb-10">Support in the format that fits.</h2><div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">{formats.map(([title, copy, slug]) => <div key={title} className="card-frame p-6 flex flex-col"><h3 className="display text-2xl">{title}</h3><p className="text-muted-foreground text-sm mt-3 flex-1">{copy}</p>{slug ? <Link to="/conditions/$slug" params={{ slug }} className="text-brand-text font-semibold text-sm mt-5">Learn more →</Link> : null}</div>)}</div><div className="border-t border-border mt-12 pt-6"><p className="eyebrow mb-2">WHERE SHE PRACTICES</p><p className="text-lg">Video visits for clients located in {statesLabel}. <Link to="/locations" className="text-brand-text font-semibold underline underline-offset-2">See where we practice</Link>.</p></div></div></section>
     <section className="section"><div className="container-site"><p className="eyebrow mb-4">BACKGROUND</p><h2 className="display text-4xl md:text-5xl mb-10">Education and experience</h2>
       <div className="grid md:grid-cols-2 gap-x-16 gap-y-10">
         <div className="border-t border-border pt-5"><h3 className="font-display text-2xl mb-4">Education</h3><ul className="space-y-3"><li>MS, Health Promotion — University of Delaware</li><li>MSc, Foods & Nutrition — Acharya N.G. Ranga Agricultural University, India</li></ul></div>
@@ -109,6 +118,7 @@ function About() {
     </div></section>
     <section className="section bg-pale"><div className="container-site"><p className="eyebrow mb-4">AREAS OF CARE</p><h2 className="display text-4xl md:text-5xl mb-8">Find support for your needs.</h2><div className="grid md:grid-cols-2 gap-x-12 border-t border-border">{conditions.map(c => <Link key={c.slug} to="/conditions/$slug" params={{slug:c.slug}} className="flex items-center justify-between gap-4 border-b border-border py-5 group"><span className="font-display text-2xl group-hover:text-primary">{c.name}</span><ArrowUpRight className="size-5 shrink-0 text-brand-text" /></Link>)}</div></div></section>
     <section className="section"><div className="container-site max-w-3xl"><p className="eyebrow mb-4">BEYOND THE CLINIC</p><p className="body-lede">Beyond my professional life, I love exploring global food traditions, practicing yoga to maintain balance and mindfulness, and experimenting in the kitchen with plant-based recipes that are both nourishing and flavorful. These passions remind me daily that food is more than just fuel—it's connection, culture, comfort, and celebration.</p></div></section>
+    <section className="section pt-0"><div className="container-site max-w-3xl"><h2 className="display text-4xl mb-8">Questions about Deepthi</h2><FAQ items={aboutFaq} /></div></section>
     <section className="bg-cta py-12 text-primary-foreground"><div className="container-site flex flex-col md:flex-row md:items-center justify-between gap-6"><div><p className="font-mono text-xs">VIDEO CARE IN {site.states.length} STATES</p><h2 className="display text-4xl mt-2">Ready to talk through your goals?</h2></div><BookButton variant="outline" className="bg-white border-white text-brand-text shrink-0 hover:bg-cta-soft">Book an appointment</BookButton></div></section>
   </main>;
 }

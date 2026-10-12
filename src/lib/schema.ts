@@ -16,7 +16,7 @@ export const breadcrumbList = (items: [string, string?][]) => ({
   itemListElement: items.map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, ...(path ? { item: canonical(path) } : {}) })),
 });
 
-export const faqPage = (items: [string, string][], path: string) => ({
+export const faqPage = (items: readonly (readonly [string, string, ...unknown[]])[], path: string) => ({
   '@type': 'FAQPage',
   '@id': `${canonical(path)}#faq`,
   mainEntity: items.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
@@ -63,6 +63,7 @@ export const conditionNodes = (c: Condition) => {
       '@id': canonical(path),
       name: c.name,
       description: c.metaDescription,
+      abstract: c.answer,
       url: canonical(path),
       about: c.category === 'clinical' ? { '@type': 'MedicalCondition', name: c.name } : { '@type': 'Thing', name: c.name },
       reviewedBy: { '@id': DEEPTHI_ID },
