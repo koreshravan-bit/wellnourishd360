@@ -38,3 +38,11 @@ jobs:
           path: site
       - id: deployment
         uses: actions/deploy-pages@v4
+      - name: Ping IndexNow
+        continue-on-error: true
+        env:
+          INDEXNOW_KEY: 86df8ee9c0a9ffbb1b6880531b115f17
+        run: |
+          URLS=$(grep -o '<loc>[^<]*</loc>' site/sitemap.xml | sed -e 's#<loc>##' -e 's#</loc>##' | jq -R . | jq -sc .) || true
+          jq -n --arg key "$INDEXNOW_KEY" --argjson urls "${URLS:-[]}" '{host:"wellnourishd360.com",key:$key,keyLocation:("https://wellnourishd360.com/"+$key+".txt"),urlList:$urls}' > indexnow.json || true
+          curl -sS -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' --data @indexnow.json || true
