@@ -19,8 +19,8 @@ describe('domain-first metadata', () => {
   it('uses wellnourishd360.com as the site URL', () => { expect(site.url).toBe(ORIGIN); expect(canonical('/about')).toBe(`${ORIGIN}/about`); });
   it('gives every page an absolute share image', () => {
     const meta = pageHead('T', 'D', '/x').meta as Record<string, string>[];
-    expect(meta.find(m => m.property === 'og:image')?.content).toBe(`${ORIGIN}/og/default.png`);
-    expect(meta.find(m => m.name === 'twitter:image')?.content).toBe(`${ORIGIN}/og/default.png`);
+    expect(meta.find(m => m['property'] === 'og:image')?.['content']).toBe(`${ORIGIN}/og/default.png`);
+    expect(meta.find(m => m['name'] === 'twitter:image')?.['content']).toBe(`${ORIGIN}/og/default.png`);
   });
 });
 
