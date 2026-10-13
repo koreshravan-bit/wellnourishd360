@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { careSlugs, blogCategories, articles, sitePaths, prerenderPaths } from '../../scripts/site-routes.mjs';
 import { conditions } from '@/content/conditions';
-import { posts, categories, categorySlug } from '@/content/blog';
+import { posts, categories, categorySlug, categoryDescriptions } from '@/content/blog';
 import { canonical, pageHead, site, pricesConfirmed, hasPhone, hasLicense } from '@/config/site';
 
 const ORIGIN = 'https://wellnourishd360.com';
@@ -90,6 +90,13 @@ describe.skipIf(!outDir)('prerendered AEO pages', () => {
 });
 
 describe('source metadata lengths', () => {
+  it('keeps all seven category descriptions within 120–155 characters', () => {
+    expect(Object.keys(categoryDescriptions)).toHaveLength(7);
+    for (const [category, description] of Object.entries(categoryDescriptions)) {
+      expect(description.length, category).toBeGreaterThanOrEqual(120);
+      expect(description.length, category).toBeLessThanOrEqual(155);
+    }
+  });
   it('keeps every condition description within 120–155 characters', () => {
     for (const c of conditions) {
       expect(c.metaDescription.length, c.slug).toBeGreaterThanOrEqual(120);
