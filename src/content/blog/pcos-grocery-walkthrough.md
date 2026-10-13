@@ -1,5 +1,6 @@
 ---
 title: "Grocery store walk-through: shopping for PCOS"
+description: "Shop for flexible PCOS meals with registered dietitian Deepthi Harkar's grocery guide, covering protein, fiber-rich carbohydrates, produce and snacks."
 slug: pcos-grocery-walkthrough
 date: 2026-08-15
 updated: 2026-08-15

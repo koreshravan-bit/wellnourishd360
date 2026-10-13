@@ -1,5 +1,6 @@
 ---
 title: "15-minute lentil bowl for steady blood sugar"
+description: "Make a quick lentil bowl with greens, vegetables and a flexible dressing. Registered dietitian Deepthi Harkar shares a pantry-friendly meal template."
 slug: lentil-bowl
 date: 2026-07-03
 updated: 2026-07-03

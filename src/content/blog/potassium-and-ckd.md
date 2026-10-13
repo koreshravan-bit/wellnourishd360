@@ -1,5 +1,7 @@
 ---
 title: "Potassium and CKD: which fruits and vegetables still fit"
+description: "Registered dietitian Deepthi Harkar explains why potassium advice for CKD starts with lab results, with tips on fruit, vegetables, portions and variety."
+seoTitle: "Potassium and CKD: Fruit and Vegetable Choices"
 slug: potassium-and-ckd
 date: 2026-07-30
 updated: 2026-07-30

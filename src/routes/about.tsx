@@ -19,7 +19,7 @@ const HERO_LEDE = 'A registered dietitian and licensed nutritionist with over 15
 
 export const Route = createFileRoute('/about')({
   head: () => ({
-    ...pageHead(`About ${site.dietitian}, ${site.credentials}`, `Meet Deepthi Harkar, MS, RDN, LDN: a registered dietitian with over 15 years of experience offering personalized, culturally sensitive, evidence-based nutrition care by video in ${site.states.length} states.`, '/about'),
+    ...pageHead(`About ${site.dietitian}, ${site.credentials}`, "Meet Deepthi Harkar, MS, RDN, LDN, a registered dietitian offering culturally sensitive nutrition care by video with over 15 years of experience.", '/about'),
     scripts: [ldScript([{ ...personNode(HERO_LEDE), memberOf: { '@type': 'Organization', name: 'Delaware Academy of Nutrition and Dietetics' }, affiliation: { '@type': 'Organization', name: 'Nutrihealth Foundation' } }, faqPage(aboutFaq, '/about')])],
   }),
   component: About,

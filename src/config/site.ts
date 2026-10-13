@@ -65,6 +65,8 @@ export const pageHead = (title: string, description: string, path: string, type 
     { property: 'og:image:height', content: String(ogImage.height) },
     { property: 'og:image:alt', content: ogImage.alt },
     { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: `${title} | WellNourishD360` },
+    { name: 'twitter:description', content: description },
     { name: 'twitter:image', content: ogImage.url },
   ],
   links: [{ rel: 'canonical', href: canonical(path) }],
