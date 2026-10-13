@@ -13,7 +13,7 @@
 - [x] Check every content route and the 404 page on desktop and mobile; fix contrast and layout glitches.
 - [x] Run all tests and verify the finishing pass.
 - [x] Ported 10 care areas and 17 practice states from the green project.
-- [x] About page rewritten from Deepthi's own profile text
+- [x] Home "Meet your dietitian": drop the repeated photo, use one centered text card; fix two credential pill labels to match About
 - [x] SEO/AEO pass for wellnourishd360.com: absolute canonicals, sitemap lastmod, JSON-LD, llms.txt, OG image, perf
 - [x] AEO pass: condition search titles + answer-first summaries, home/About FAQs, /locations page, llms key facts, AI bot robots groups, IndexNow
 
