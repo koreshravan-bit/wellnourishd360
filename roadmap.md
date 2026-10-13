@@ -18,4 +18,5 @@
 - [x] AEO pass: condition search titles + answer-first summaries, home/About FAQs, /locations page, llms key facts, AI bot robots groups, IndexNow
 
 - [x] Constrain all page titles and descriptions; verify all 32 rendered pages and add a prerendered-output metadata test.
-- [ ] Run the GitHub-style production build and its output tests; blocked because this environment permits only automated builds and exposes no prerendered output.
+- [x] Ran the GitHub-style production build and its prerendered-output metadata tests.
+- [x] Home "Meet your dietitian": drop the repeated photo, use one centered text card; fix two credential pill labels to match About
