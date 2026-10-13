@@ -6,7 +6,7 @@ import { breadcrumbList, ldScript, PRACTICE_ID, WEBSITE_ID } from '@/lib/schema'
 
 const states = site.states.map((code) => ({ code, name: stateNames[code] ?? code }));
 const TITLE = `Online Dietitian Visits in ${site.states.length} States`;
-const DESCRIPTION = `Video visits with registered dietitian ${site.dietitian}, ${site.credentials}, for clients located in ${site.states.length} states. Most major insurance plans accepted; self-pay available.`;
+const DESCRIPTION = `Registered dietitian ${site.dietitian}, ${site.credentials}, offers video visits in ${site.states.length} states. Most major insurance plans accepted; self-pay available.`;
 
 export const Route = createFileRoute('/locations')({
   head: () => ({

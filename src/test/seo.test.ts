@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { careSlugs, blogCategories, articles, sitePaths, prerenderPaths } from '../../scripts/site-routes.mjs';
 import { conditions } from '@/content/conditions';
-import { posts, categories, categorySlug } from '@/content/blog';
+import { posts, categories, categorySlug, categoryDescriptions } from '@/content/blog';
 import { canonical, pageHead, site, pricesConfirmed, hasPhone, hasLicense } from '@/config/site';
 
 const ORIGIN = 'https://wellnourishd360.com';
@@ -41,7 +41,8 @@ function collectUrls(node: unknown, found: string[] = []): string[] {
 
 describe.skipIf(!outDir)('prerendered JSON-LD', () => {
   it('is valid JSON with absolute wellnourishd360.com URLs on every page', () => {
-    const files = htmlFiles(outDir!);
+    if (!outDir) throw new Error('Static build output is missing');
+    const files = htmlFiles(outDir);
     expect(files.length).toBeGreaterThan(20);
     let blocks = 0;
     for (const file of files) {
@@ -57,7 +58,7 @@ describe.skipIf(!outDir)('prerendered JSON-LD', () => {
 });
 
 describe('answer-first condition content', () => {
-  it('gives every condition a search title of at most 60 characters', () => { for (const c of conditions) { expect(c.seoTitle, c.slug).toBeTruthy(); expect(c.seoTitle.length, c.slug).toBeLessThanOrEqual(60); } });
+  it('keeps full condition titles within 65 characters', () => { for (const c of conditions) { expect(c.seoTitle, c.slug).toBeTruthy(); expect(`${c.seoTitle} | WellNourishD360`.length, c.slug).toBeLessThanOrEqual(65); } });
   it('gives every condition a question and a 40–60 word answer starting with "Yes."', () => {
     for (const c of conditions) {
       expect(c.answerQuestion.endsWith('?'), c.slug).toBe(true);
@@ -69,7 +70,11 @@ describe('answer-first condition content', () => {
   it('lists /locations as a public path', () => { expect(sitePaths).toContain('/locations'); });
 });
 
-const pageFile = (path: string) => join(outDir!, `${path.slice(1)}.html`);
+const pageFile = (path: string) => {
+  if (!outDir) throw new Error('Static build output is missing');
+  const flat = join(outDir, path === '/' ? 'index.html' : `${path.slice(1)}.html`);
+  return existsSync(flat) ? flat : join(outDir, path.slice(1), 'index.html');
+};
 describe.skipIf(!outDir)('prerendered AEO pages', () => {
   it('renders /locations with one H2 per practice state', () => {
     const html = readFileSync(pageFile('/locations'), 'utf8');
@@ -79,7 +84,54 @@ describe.skipIf(!outDir)('prerendered AEO pages', () => {
     expect(h2s.filter(h => ['Arizona','California','Colorado','Connecticut','Delaware','Hawaii','Indiana','Massachusetts','Michigan','New Jersey','New York','Oklahoma','Oregon','Pennsylvania','Texas','Virginia','Wisconsin'].includes(h ?? ''))).toHaveLength(17);
   });
   it('has FAQPage JSON-LD on home and about', () => {
-    expect(readFileSync(join(outDir!, 'index.html'), 'utf8')).toContain('"@type":"FAQPage"');
+    expect(readFileSync(pageFile('/'), 'utf8')).toContain('"@type":"FAQPage"');
     expect(readFileSync(pageFile('/about'), 'utf8')).toContain('"@type":"FAQPage"');
+  });
+});
+
+describe('source metadata lengths', () => {
+  it('keeps all seven category descriptions within 120–155 characters', () => {
+    expect(Object.keys(categoryDescriptions)).toHaveLength(7);
+    for (const [category, description] of Object.entries(categoryDescriptions)) {
+      expect(description.length, category).toBeGreaterThanOrEqual(120);
+      expect(description.length, category).toBeLessThanOrEqual(155);
+    }
+  });
+  it('keeps every condition description within 120–155 characters', () => {
+    for (const c of conditions) {
+      expect(c.metaDescription.length, c.slug).toBeGreaterThanOrEqual(120);
+      expect(c.metaDescription.length, c.slug).toBeLessThanOrEqual(155);
+    }
+  });
+  it('keeps article search metadata separate from visible excerpts', () => {
+    for (const post of posts) {
+      expect(post.description.length, post.slug).toBeGreaterThanOrEqual(120);
+      expect(post.description.length, post.slug).toBeLessThanOrEqual(155);
+      expect(`${post.seoTitle || post.title} | WellNourishD360`.length, post.slug).toBeLessThanOrEqual(65);
+    }
+  });
+});
+
+describe.skipIf(!outDir)('all prerendered page metadata', () => {
+  it('loads every page and lists any title, description or share-description offenders', () => {
+    if (!outDir) throw new Error('Static build output is missing');
+    const offenders: string[] = [];
+    for (const path of prerenderPaths) {
+      if (!existsSync(pageFile(path))) offenders.push(`${path}: prerendered HTML missing`);
+    }
+    const files = htmlFiles(outDir);
+    expect(files.length).toBeGreaterThanOrEqual(prerenderPaths.length);
+    for (const file of files) {
+      const document = new DOMParser().parseFromString(readFileSync(file, 'utf8'), 'text/html');
+      const title = document.querySelector('title')?.textContent ?? '';
+      const description = document.querySelector('meta[name="description"]')?.getAttribute('content') ?? '';
+      if (!title || title.length > 65) offenders.push(`${file}: title length ${title.length}`);
+      if (description.length < 120 || description.length > 155) offenders.push(`${file}: description length ${description.length}`);
+      for (const selector of ['meta[property="og:description"]', 'meta[name="twitter:description"]']) {
+        const shared = document.querySelector(selector)?.getAttribute('content');
+        if (shared !== description) offenders.push(`${file}: ${selector} does not match description`);
+      }
+    }
+    expect(offenders, offenders.join('\n')).toEqual([]);
   });
 });

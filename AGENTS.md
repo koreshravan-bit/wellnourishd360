@@ -16,3 +16,5 @@
 - Render blog Markdown to HTML at build time (scripts/blog-markdown.mjs, `?meta`/`?html` imports) so Markdown libraries never ship to the browser.
 - Build absolute URLs and JSON-LD from site.url (defaulting to the custom domain) via src/lib/schema.ts, because the .com is the only public site.
 - Generate robots.txt, sitemap.xml and llms.txt after the build from site config and content, rather than keeping static copies that go stale.
+
+- Keep article search titles and descriptions in Markdown frontmatter, separate from visible titles and card excerpts, so metadata edits do not change editorial copy.

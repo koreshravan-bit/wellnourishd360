@@ -7,10 +7,11 @@ export function NotFoundPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-background px-4">
       <title>Page not found | WellNourishD360</title>
-      <meta name="description" content="The requested WellNourishD360 page could not be found." />
+      <meta name="description" content="This WellNourishD360 page could not be found. Return home to explore video nutrition care, insurance information and articles by Deepthi Harkar." />
       <meta property="og:title" content="Page not found | WellNourishD360" />
-      <meta property="og:description" content="The requested WellNourishD360 page could not be found." />
+      <meta property="og:description" content="This WellNourishD360 page could not be found. Return home to explore video nutrition care, insurance information and articles by Deepthi Harkar." />
       <meta property="og:type" content="website" />
+      <meta name="twitter:description" content="This WellNourishD360 page could not be found. Return home to explore video nutrition care, insurance information and articles by Deepthi Harkar." />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="robots" content="noindex" />
       <div className="max-w-md text-center">

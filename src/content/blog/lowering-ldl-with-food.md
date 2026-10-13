@@ -1,5 +1,7 @@
 ---
 title: "Lowering LDL with food: what the evidence supports"
+description: "Registered dietitian Deepthi Harkar explains soluble fiber and food choices for LDL cholesterol, with practical ideas for beans, oats and unsaturated fats."
+seoTitle: "Lowering LDL with Food: Fiber and Fats"
 slug: lowering-ldl-with-food
 date: 2026-07-17
 updated: 2026-07-17

@@ -1,5 +1,7 @@
 ---
 title: "What to eat on a GLP-1: protein first, then everything else"
+description: "Registered dietitian Deepthi Harkar explains protein, smaller meals and hydration during GLP-1 treatment, with guidance for changing appetites."
+seoTitle: "What to Eat on a GLP-1: Protein and Meals"
 slug: glp1-protein-first
 date: 2026-09-12
 updated: 2026-09-12

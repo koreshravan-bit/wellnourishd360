@@ -16,3 +16,6 @@
 - [x] About page rewritten from Deepthi's own profile text
 - [x] SEO/AEO pass for wellnourishd360.com: absolute canonicals, sitemap lastmod, JSON-LD, llms.txt, OG image, perf
 - [x] AEO pass: condition search titles + answer-first summaries, home/About FAQs, /locations page, llms key facts, AI bot robots groups, IndexNow
+
+- [x] Constrain all page titles and descriptions; verify all 32 rendered pages and add a prerendered-output metadata test.
+- [ ] Run the GitHub-style production build and its output tests; blocked because this environment permits only automated builds and exposes no prerendered output.

@@ -1,5 +1,6 @@
 ---
 title: "5 breakfasts that support steady blood sugar"
+description: "Explore five breakfast ideas with protein and fiber from registered dietitian Deepthi Harkar, with flexible portions and room for your food preferences."
 slug: blood-sugar-breakfasts
 date: 2026-08-28
 updated: 2026-08-28
