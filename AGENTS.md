@@ -7,7 +7,7 @@
 
 - Keep the site on TanStack Start's file router rather than adding another router, because the preview and deployment runtime require the existing bootstrap.
 - Keep marketing content and booking destinations in local config and Markdown; no visitor health information is stored on this site.
-- Use a single condition template and local data for the six care pages so presentation remains consistent.
+- Use a single condition template and local data for all care pages so presentation remains consistent.
 - Prerender all known content paths and deploy the client output to GitHub Pages on the custom domain in public/CNAME; set VITE_BASE_PATH and VITE_SITE_URL in the workflow to match that domain so links and canonical metadata stay correct.
 - Serve brand SVGs from public/brand through the Vite base path so the same markup works at repository-hosted URLs.
 - Load the dietitian portrait from public/images through the Vite base path and retain a placeholder fallback until the real photo is supplied.
@@ -17,4 +17,6 @@
 - Build absolute URLs and JSON-LD from site.url (defaulting to the custom domain) via src/lib/schema.ts, because the .com is the only public site.
 - Generate robots.txt, sitemap.xml and llms.txt after the build from site config and content, rather than keeping static copies that go stale.
 
+- Keep one focusable `main#main` per content page and the skip link first in the root shell; this preserves keyboard access across shared and error layouts.
+- Hide the mobile booking bar based on the current router location and its body spacing via the Book main marker, so both navigation and static output agree.
 - Keep article search titles and descriptions in Markdown frontmatter, separate from visible titles and card excerpts, so metadata edits do not change editorial copy.

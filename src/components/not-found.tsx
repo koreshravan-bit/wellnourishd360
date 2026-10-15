@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 // GitHub Pages serves as 404.html, so both render identical markup.
 export function NotFoundPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-4">
+    <main id="main" tabIndex={-1} className="flex min-h-screen items-center justify-center bg-background px-4">
       <title>Page not found | WellNourishD360</title>
       <meta name="description" content="This WellNourishD360 page could not be found. Return home to explore video nutrition care, insurance information and articles by Deepthi Harkar." />
       <meta property="og:title" content="Page not found | WellNourishD360" />

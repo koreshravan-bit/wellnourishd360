@@ -21,7 +21,7 @@ export const Route = createFileRoute('/book')({
 function Book() {
   useEffect(() => { trackEvent('booking_page_view', { page_path: window.location.pathname }); }, []);
   const link = 'text-brand-text font-semibold underline underline-offset-2';
-  return <main>
+  return <main id="main" tabIndex={-1} data-booking-page>
     <section className="bg-pale py-12 md:py-16"><div className="container-site max-w-4xl">
       <p className="eyebrow mb-5">BOOK AN APPOINTMENT</p>
       <h1 className="display text-5xl md:text-6xl">Book your visit with Deepthi</h1>
@@ -39,6 +39,10 @@ function Book() {
       <div className="mt-4 text-sm text-muted-foreground flex flex-col sm:flex-row sm:justify-between gap-2">
         <p>Booking provided by <a href="https://gethealthie.com" target="_blank" rel="noopener noreferrer" className={link}>Healthie</a></p>
         <p>Trouble loading? <a href={site.healthie.bookingUrl} target="_blank" rel="noopener noreferrer" className={link}>Open booking in a new tab</a></p>
+      </div>
+      <div className="mt-6 text-sm flex flex-col gap-2">
+        <p>Questions before booking? <a href={`mailto:${site.email}`} className={link}>Email {site.email}</a></p>
+        <p>Returning client? <a href={site.healthie.clientLoginUrl} target="_blank" rel="noopener noreferrer" data-track="portal" className={link}>Log in to your Healthie portal</a></p>
       </div>
       <p className="mt-6 text-sm bg-amber-soft rounded-lg px-4 py-3">Please don't share health details by email; use your secure Healthie portal.</p>
     </div></section>

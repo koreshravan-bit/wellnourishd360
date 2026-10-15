@@ -68,7 +68,7 @@ const sessionExpectations = [
 ];
 
 function About() {
-  return <main>
+  return <main id="main" tabIndex={-1}>
     <section className="section bg-pale"><div className="container-site grid md:grid-cols-2 gap-12 items-center">
       <div><p className="eyebrow mb-5">MEET YOUR DIETITIAN</p><h1 className="display text-5xl md:text-6xl">{site.dietitian}, {site.credentials}</h1><p className="body-lede mt-6">A registered dietitian and licensed nutritionist with over 15 years of experience helping individuals and families transform their health through sustainable, culturally sensitive, evidence-based nutrition care.</p><div className="flex flex-wrap gap-3 mt-7"><BookButton>Book an appointment</BookButton><ActionLink to="/insurance">Check my insurance</ActionLink></div></div>
       <DietitianPhoto priority className="h-[370px] md:h-[500px] w-full rounded-t-[170px] rounded-b-xl" />
