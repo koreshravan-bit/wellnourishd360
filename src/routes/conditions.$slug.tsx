@@ -18,7 +18,7 @@ export const Route = createFileRoute('/conditions/$slug')({
 function ConditionPage() {
   const c = Route.useLoaderData();
   const related = posts.filter(post => post.category === c.blogCategory).slice(0, 3);
-  return <main>
+  return <main id="main" tabIndex={-1}>
     <section className="bg-pale py-14 md:py-20"><div className="container-site">
       <p className="text-sm text-muted-foreground mb-10"><Link to="/">Home</Link> / Conditions / <span className="text-foreground">{c.name}</span></p>
       <div className="grid lg:grid-cols-[1.1fr_.9fr] items-center gap-12"><div>

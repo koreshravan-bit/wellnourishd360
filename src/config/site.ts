@@ -37,7 +37,7 @@ export const site = {
     selfPay: HEALTHIE_BOOKING,
     clientPortal: HEALTHIE_LOGIN,
   },
-  prices: { initial: '$[TBD]', followUp: '$[TBD]', program: '$[TBD]', lateFee: '[$X]' },
+  prices: { initial: '$[TBD]', followUp: '$[TBD]', lateFee: '[$X]' },
   policies: {
     cancellationWindowHours: 24,
     waivedLateCancellations: 2,
@@ -53,7 +53,7 @@ export const statesLabel = site.states.join(', ');
 const isPlaceholder = (value: string) => value.includes('[') || /pending|TBD/i.test(value);
 export const hasPhone = !isPlaceholder(site.phone);
 export const hasLicense = !isPlaceholder(site.license);
-export const pricesConfirmed = ![site.prices.initial, site.prices.followUp, site.prices.program].some(isPlaceholder);
+export const pricesConfirmed = ![site.prices.initial, site.prices.followUp].some(isPlaceholder);
 export const hasLateFee = !isPlaceholder(site.prices.lateFee);
 
 export type BookingService = keyof Omit<typeof site.booking, 'clientPortal'>;

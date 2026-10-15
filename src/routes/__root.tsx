@@ -23,7 +23,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <main id="main" tabIndex={-1} className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
           This page didn't load
@@ -49,7 +49,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
           </a>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
@@ -90,6 +90,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-lg focus:bg-primary focus:text-primary-foreground focus:px-5 focus:py-3">Skip to main content</a>
         {children}
         <Scripts />
       </body>

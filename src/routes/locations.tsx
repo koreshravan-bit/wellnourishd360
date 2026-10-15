@@ -20,7 +20,7 @@ export const Route = createFileRoute('/locations')({
 });
 
 function Locations() {
-  return <main>
+  return <main id="main" tabIndex={-1}>
     <section className="bg-pale py-14 md:py-20"><div className="container-site max-w-4xl">
       <p className="eyebrow mb-5">WHERE WE PRACTICE</p>
       <h1 className="display text-5xl md:text-6xl">Online dietitian visits in {site.states.length} states</h1>

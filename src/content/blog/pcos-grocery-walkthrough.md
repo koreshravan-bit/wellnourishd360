@@ -8,7 +8,6 @@ category: PCOS
 excerpt: "A flexible grocery list for quick meals that keep you satisfied."
 readingTime: 5
 coverImage: "Photo: colorful grocery basket"
-videoUrl: "https://www.youtube.com/watch?v=jfKfPfyJRdk"
 featured: false
 ---
 There is no special aisle for PCOS. Stocking a few reliable staples makes it easier to put together satisfying meals.
