@@ -25,7 +25,7 @@ describe('domain-first metadata', () => {
 });
 
 describe('placeholders stay hidden', () => {
-  it('hides the placeholder phone, licence and prices', () => { expect(hasPhone).toBe(false); expect(hasLicense).toBe(false); expect(pricesConfirmed).toBe(false); });
+  it('shows the real phone but keeps the licence and prices hidden', () => { expect(hasPhone).toBe(true); expect(site.phoneHref).toBe('tel:+16097218672'); expect(hasLicense).toBe(false); expect(pricesConfirmed).toBe(false); });
   it('has no reviews until real ones exist', () => { expect(site.reviews).toHaveLength(0); });
 });
 

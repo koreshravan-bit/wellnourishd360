@@ -33,6 +33,7 @@ writeFileSync(join(out, 'llms.txt'), `# ${site.name}
 - States: ${site.states.length} (${stateList}); clients must be located in one of them at the time of the visit
 - Payment: in network with most major insurance plans; self-pay available
 - Book online: ${url}/book
+- Phone: ${site.phone}
 - Contact: ${site.email}
 
 ## Areas of care

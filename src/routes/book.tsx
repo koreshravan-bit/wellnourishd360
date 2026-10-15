@@ -41,7 +41,7 @@ function Book() {
         <p>Trouble loading? <a href={site.healthie.bookingUrl} target="_blank" rel="noopener noreferrer" className={link}>Open booking in a new tab</a></p>
       </div>
       <div className="mt-6 text-sm flex flex-col gap-2">
-        <p>Questions before booking? <a href={`mailto:${site.email}`} className={link}>Email {site.email}</a></p>
+        <p>Questions before booking? <a href={`mailto:${site.email}`} className={link}>Email {site.email}</a> or call <a href={site.phoneHref} className={link}>{site.phone}</a></p>
         <p>Returning client? <a href={site.healthie.clientLoginUrl} target="_blank" rel="noopener noreferrer" data-track="portal" className={link}>Log in to your Healthie portal</a></p>
       </div>
       <p className="mt-6 text-sm bg-amber-soft rounded-lg px-4 py-3">Please don't share health details by email; use your secure Healthie portal.</p>

@@ -32,6 +32,7 @@ export const practiceNode = () => ({
   logo: canonical('/brand/wellnourish-logo.svg'),
   image: ogImage.url,
   email: site.email,
+  telephone: '+1-609-721-8672',
   medicalSpecialty: 'DietNutrition',
   areaServed: site.states.map((s) => ({ '@type': 'State', name: stateNames[s] ?? s })),
   availableService: conditions.map((c) => ({ '@type': 'MedicalTherapy', name: c.name, url: canonical(`/conditions/${c.slug}`) })),
