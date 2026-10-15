@@ -19,3 +19,7 @@ describe('practice content rules', () => {
  it('says group and family coverage varies by plan', () => { const c = conditions.find(x => x.slug === 'group-family')!; expect(c.answer.startsWith('Yes.'), c.slug).toBe(true); expect(c.answer).toContain('Coverage for group and family visits varies by plan and diagnosis, so we check your benefits before you book; self-pay is also available.'); expect(c.answer).not.toContain('Most major insurance plans are accepted'); expect(c.insuranceRow).toBe('Varies by plan; self-pay available'); });
  it('keeps one default insurance row for the other eight care areas', () => { expect(defaultInsuranceRow).toBe('Most major plans; self-pay available'); expect(conditions.filter(c => c.insuranceRow).map(c => c.slug).sort()).toEqual(['corporate-wellness', 'group-family']); for (const c of conditions.filter(x => !x.insuranceRow)) expect(c.answer).toContain('Most major insurance plans are accepted'); });
 });
+describe('Healthie booking', () => {
+ it('uses the plum-branded Healthie booking link with three appointment types', () => { expect(site.healthie.bookingUrl).toBe('https://secure.gethealthie.com/appointments/embed_appt?dietitian_id=16509081&provider_ids=%5B16509081%5D&appt_type_ids=%5B536143,536144,536145%5D&primary_color=4B2A5C'); });
+ it('sends Client login to the Healthie sign-in page', () => { expect(site.booking.clientPortal).toBe('https://secure.gethealthie.com/users/sign_in'); expect(site.healthie.clientLoginUrl).toBe(site.booking.clientPortal); });
+});

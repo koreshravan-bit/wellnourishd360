@@ -34,7 +34,7 @@ function Locations() {
       {states.map(({ code, name }) => <div key={code} className="py-7">
         <h2 className="display text-3xl">{name}</h2>
         <p className="text-muted-foreground mt-3">Video visits with {site.dietitian}, {site.credentials}, are available to clients located in {name} at the time of the visit. Most major insurance plans are accepted, and self-pay is available.</p>
-        <p className="mt-3 text-sm flex flex-wrap gap-x-5 gap-y-2"><a href={site.booking.default} target="_blank" rel="noopener noreferrer" className="text-brand-text font-semibold underline underline-offset-2">Book a visit</a><Link to="/insurance" className="text-brand-text font-semibold underline underline-offset-2">Insurance &amp; pricing</Link></p>
+        <p className="mt-3 text-sm flex flex-wrap gap-x-5 gap-y-2"><Link to="/book" className="text-brand-text font-semibold underline underline-offset-2">Book a visit</Link><Link to="/insurance" className="text-brand-text font-semibold underline underline-offset-2">Insurance &amp; pricing</Link></p>
       </div>)}
     </div></section>
     <section className="bg-cta py-12 text-primary-foreground"><div className="container-site flex flex-col md:flex-row md:items-center justify-between gap-6"><div><p className="font-mono text-xs tracking-widest">VIDEO CARE IN {site.states.length} STATES</p><h2 className="display text-4xl mt-2">Ready to talk through your goals?</h2></div><BookButton variant="outline" className="bg-white border-white text-brand-text shrink-0 hover:bg-cta-soft">Book an appointment</BookButton></div></section>

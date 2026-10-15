@@ -26,7 +26,7 @@ const allCategories = ['diabetes', 'pcos', 'glp-1', 'kidney', 'heart', 'recipes'
 // The "videos" listing is only published while at least one post has a video.
 export const blogCategories = allCategories.filter((cat) => cat !== 'videos' || articles.some((a) => a.hasVideo));
 
-export const staticPaths = ['/', '/insurance', '/about', '/locations', '/blog', '/privacy', '/notice-of-privacy-practices', '/terms'];
+export const staticPaths = ['/', '/insurance', '/about', '/locations', '/book', '/blog', '/privacy', '/notice-of-privacy-practices', '/terms'];
 
 /** Every indexable path (sitemap). */
 export const sitePaths = [

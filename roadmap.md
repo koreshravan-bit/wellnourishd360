@@ -20,3 +20,4 @@
 - [x] Constrain all page titles and descriptions; verify all 32 rendered pages and add a prerendered-output metadata test.
 - [x] Ran the GitHub-style production build and its prerendered-output metadata tests.
 - [x] Home "Meet your dietitian": drop the repeated photo, use one centered text card; fix two credential pill labels to match About
+- [x] Healthie booking connected: /book page with embedded scheduler; all Book buttons open /book
