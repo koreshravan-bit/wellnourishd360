@@ -17,9 +17,10 @@ describe('approved legal policy settings', () => {
     expect(site.mailingAddress).toBe('');
   });
   it('omits the unspecified mailing address', () => {
+    expect(site.mailingAddress).toBe('');
     const html = renderToStaticMarkup(<LegalContact />);
     expect(html).toContain(`mailto:${site.email}`);
-    expect(html).not.toContain(site.mailingAddress);
+    expect(html).not.toContain('Test mailing address');
   });
   it('shows the practice phone as a tel: link', () => {
     const html = renderToStaticMarkup(<LegalContact />);
