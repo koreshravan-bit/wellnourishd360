@@ -16,19 +16,15 @@ describe('approved legal policy settings', () => {
   it('does not invent a mailing address', () => {
     expect(site.mailingAddress).toBe('');
   });
-  it('omits the unspecified phone and address', () => {
+  it('omits the unspecified mailing address', () => {
     const html = renderToStaticMarkup(<LegalContact />);
     expect(html).toContain(`mailto:${site.email}`);
-    expect(html).not.toContain('Phone:');
-    expect(html).not.toContain('[Phone number]');
-    expect(html).not.toContain('<span');
+    expect(html).not.toContain(site.mailingAddress);
   });
-  it('shows a real phone when supplied', () => {
-    const original = site.phone;
-    try {
-      site.phone = '201-555-0123';
-      expect(renderToStaticMarkup(<LegalContact />)).toContain('Phone: 201-555-0123');
-    } finally { site.phone = original; }
+  it('shows the practice phone as a tel: link', () => {
+    const html = renderToStaticMarkup(<LegalContact />);
+    expect(html).toContain('Phone: +1 (609) 721-8672');
+    expect(html).toContain('href="tel:+16097218672"');
   });
   it('shows a mailing address only when supplied', () => {
     const original = site.mailingAddress;
