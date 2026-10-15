@@ -1,3 +1,6 @@
+const HEALTHIE_BOOKING = 'https://secure.gethealthie.com/appointments/embed_appt?dietitian_id=16509081&provider_ids=%5B16509081%5D&appt_type_ids=%5B536143,536144,536145%5D&primary_color=4B2A5C';
+const HEALTHIE_LOGIN = 'https://secure.gethealthie.com/users/sign_in';
+
 export const site = {
   name: 'WellNourishD360 LLC',
   shortName: 'WellNourish',
@@ -12,22 +15,27 @@ export const site = {
   states: ['AZ', 'CA', 'CO', 'CT', 'DE', 'HI', 'IN', 'MA', 'MI', 'NJ', 'NY', 'OK', 'OR', 'PA', 'TX', 'VA', 'WI'],
   // The only public site. Absolute URLs (canonical, og:url, JSON-LD) always point here.
   url: (import.meta.env?.['VITE_SITE_URL'] as string | undefined) || 'https://wellnourishd360.com',
+  healthie: {
+    bookingUrl: HEALTHIE_BOOKING,
+    clientLoginUrl: HEALTHIE_LOGIN,
+  },
+  // Per-service Healthie links (all the same for now). Book buttons open the /book page.
   booking: {
-    default: 'https://secure.gethealthie.com/',
-    diabetes: 'https://secure.gethealthie.com/',
-    pcos: 'https://secure.gethealthie.com/',
-    glp1: 'https://secure.gethealthie.com/',
-    kidney: 'https://secure.gethealthie.com/',
-    heart: 'https://secure.gethealthie.com/',
-    general: 'https://secure.gethealthie.com/',
-    weight: 'https://secure.gethealthie.com/',
-    plantBased: 'https://secure.gethealthie.com/',
-    intuitiveEating: 'https://secure.gethealthie.com/',
-    corporate: 'https://secure.gethealthie.com/',
-    group: 'https://secure.gethealthie.com/',
-    insurance: 'https://secure.gethealthie.com/',
-    selfPay: 'https://secure.gethealthie.com/',
-    clientPortal: 'https://secure.gethealthie.com/',
+    default: HEALTHIE_BOOKING,
+    diabetes: HEALTHIE_BOOKING,
+    pcos: HEALTHIE_BOOKING,
+    glp1: HEALTHIE_BOOKING,
+    kidney: HEALTHIE_BOOKING,
+    heart: HEALTHIE_BOOKING,
+    general: HEALTHIE_BOOKING,
+    weight: HEALTHIE_BOOKING,
+    plantBased: HEALTHIE_BOOKING,
+    intuitiveEating: HEALTHIE_BOOKING,
+    corporate: HEALTHIE_BOOKING,
+    group: HEALTHIE_BOOKING,
+    insurance: HEALTHIE_BOOKING,
+    selfPay: HEALTHIE_BOOKING,
+    clientPortal: HEALTHIE_LOGIN,
   },
   prices: { initial: '$[TBD]', followUp: '$[TBD]', program: '$[TBD]', lateFee: '[$X]' },
   policies: {

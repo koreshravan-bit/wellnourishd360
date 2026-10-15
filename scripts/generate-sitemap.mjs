@@ -32,6 +32,7 @@ writeFileSync(join(out, 'llms.txt'), `# ${site.name}
 - Booking and intake: through Healthie; no health information is collected on this website
 - States: ${site.states.length} (${stateList}); clients must be located in one of them at the time of the visit
 - Payment: in network with most major insurance plans; self-pay available
+- Book online: ${url}/book
 - Contact: ${site.email}
 
 ## Areas of care
@@ -42,6 +43,7 @@ ${conditions.map((c) => `- [${c.name}](${url}/conditions/${c.slug}): ${c.short}`
 
 - [About ${site.dietitian}](${url}/about): background, credentials and approach to care
 - [Where we practice](${url}/locations): online dietitian visits in all ${site.states.length} states
+- [Book an appointment](${url}/book): book a video visit with ${site.dietitian} online
 - [Insurance & pricing](${url}/insurance): insurance coverage, self-pay and cancellation policy
 - [Blog](${url}/blog): nutrition articles and recipes
 `);
