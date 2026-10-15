@@ -25,3 +25,4 @@
 - [x] Healthie booking connected: /book page with embedded scheduler; all Book buttons open /book
 - [x] Replace all three legal pages with approved policies, shared effective date and conditional contact details; 53 tests pass, desktop/mobile and metadata checks pass, automatic compilation succeeds.
 - [ ] Verify approved legal pages with the GitHub-style build and prerendered-output checks — blocked by the environment's prohibition on manual builds; requires GitHub Actions.
+- [x] Practice phone set (+1 (609) 721-8672): tel: links in footer, legal Contact and /book; telephone JSON-LD and llms.txt Key facts; 53 tests pass, GitHub-style build succeeds.
