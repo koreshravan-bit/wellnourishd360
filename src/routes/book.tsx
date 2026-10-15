@@ -40,7 +40,7 @@ function Book() {
         <p>Booking provided by <a href="https://gethealthie.com" target="_blank" rel="noopener noreferrer" className={link}>Healthie</a></p>
         <p>Trouble loading? <a href={site.healthie.bookingUrl} target="_blank" rel="noopener noreferrer" className={link}>Open booking in a new tab</a></p>
       </div>
-      <p className="mt-6 text-sm bg-gold-soft rounded-lg px-4 py-3">Please don't share health details by email; use your secure Healthie portal.</p>
+      <p className="mt-6 text-sm bg-amber-soft rounded-lg px-4 py-3">Please don't share health details by email; use your secure Healthie portal.</p>
     </div></section>
   </main>;
 }
