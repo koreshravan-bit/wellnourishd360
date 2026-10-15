@@ -7,7 +7,6 @@ import { conditions , conditionGroups } from '@/content/conditions';
 import { trackEvent } from '@/lib/analytics';
 
 export function BookButton({ service = 'default', children = 'Book a consult', variant = 'default', className = '' }: { service?: BookingService; children?: React.ReactNode; variant?: 'default' | 'outline'; className?: string }) {
-export function BookButton({ service = 'default', children = 'Book a consult', variant = 'default', className = '' }: { service?: BookingService; children?: React.ReactNode; variant?: 'default' | 'outline'; className?: string }) {
   const v = variant === 'outline' ? 'siteOutline' : 'sitePrimary';
   // No Healthie appointment type for workplace programs: email instead (the GA loader records email_click).
   if (service === 'corporate') return <Button asChild variant={v} className={className}><a href={`mailto:${site.email}?subject=${encodeURIComponent('Corporate wellness inquiry')}`}>{children}</a></Button>;
