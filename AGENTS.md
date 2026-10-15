@@ -20,3 +20,4 @@
 - Keep one focusable `main#main` per content page and the skip link first in the root shell; this preserves keyboard access across shared and error layouts.
 - Hide the mobile booking bar based on the current router location and its body spacing via the Book main marker, so both navigation and static output agree.
 - Keep article search titles and descriptions in Markdown frontmatter, separate from visible titles and card excerpts, so metadata edits do not change editorial copy.
+- Legal pages use the shared LegalContact component and site-configured effective date, so optional contact details and policy dates stay consistent.

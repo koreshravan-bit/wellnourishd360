@@ -8,6 +8,8 @@ export const site = {
   credentials: 'MS, RDN, LDN',
   email: 'wellnourishd4u@gmail.com',
   phone: '[Phone number]',
+  mailingAddress: '',
+  legalEffectiveDate: 'October 15, 2026',
   hours: 'Mon–Thu, by appointment',
   license: '[pending]',
   npi: '1487042883',
