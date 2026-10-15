@@ -23,3 +23,5 @@
 - [x] Audit fixes: remove unrelated video and program pricing; update referrals, booking contacts, client login placement, skip link and privacy wording; 48 tests pass (4 output checks skipped), desktop/mobile and keyboard checks pass, automatic compilation succeeds.
 - [ ] Verify audit fixes with the GitHub-style build and output tests — blocked because manual builds are prohibited in this environment; requires the next GitHub Actions run.
 - [x] Healthie booking connected: /book page with embedded scheduler; all Book buttons open /book
+- [ ] Replace all three legal pages with approved policies, shared effective date and conditional contact details; verify tests and desktop/mobile.
+- [ ] Verify approved legal pages with the GitHub-style build and prerendered-output checks — blocked by the environment's prohibition on manual builds; requires GitHub Actions.

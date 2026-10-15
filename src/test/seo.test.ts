@@ -113,6 +113,16 @@ describe('source metadata lengths', () => {
 });
 
 describe.skipIf(!outDir)('all prerendered page metadata', () => {
+  it('contains no placeholder wording in the main content of any prerendered page', () => {
+    if (!outDir) throw new Error('Static build output is missing');
+    const offenders: string[] = [];
+    for (const file of htmlFiles(outDir)) {
+      const document = new DOMParser().parseFromString(readFileSync(file, 'utf8'), 'text/html');
+      const main = document.querySelector('main');
+      if (!main || /placeholder/i.test(main.textContent ?? '')) offenders.push(file);
+    }
+    expect(offenders, offenders.join('\n')).toEqual([]);
+  });
   it('loads every page and lists any title, description or share-description offenders', () => {
     if (!outDir) throw new Error('Static build output is missing');
     const offenders: string[] = [];
