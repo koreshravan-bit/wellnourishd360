@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { site } from '@/config/site';
 import { conditions, defaultInsuranceRow } from '@/content/conditions';
-import { posts } from '@/content/blog';
+import { posts, categories } from '@/content/blog';
+import { blogCategories, prerenderPaths, sitePaths } from '../../scripts/site-routes.mjs';
 describe('practice content rules', () => {
  it('uses the dietitian’s name', () => { expect(site.dietitian).toBe('Deepthi Harkar'); });
  it('uses her full credentials', () => { expect(site.credentials).toBe('MS, RDN, LDN'); });
@@ -12,6 +13,9 @@ describe('practice content rules', () => {
  it('waives the first two late cancellations or no-shows', () => { expect(site.policies.waivedLateCancellations).toBe(2); });
  it('keeps booking destinations centralized for all ten care areas', () => { expect(conditions).toHaveLength(10); for (const c of conditions) expect(site.booking[c.service]).toMatch(/^https:\/\/secure\.gethealthie\.com\//); });
  it('keeps six editable seed articles', () => { expect(posts).toHaveLength(6); });
+ it('removes the unrelated PCOS video', () => { const post = posts.find(p => p.slug === 'pcos-grocery-walkthrough'); expect(post).toBeDefined(); expect(post?.videoUrl).toBeUndefined(); });
+ it('hides the video category while no posts have a video', () => { expect(posts.some(p => p.videoUrl)).toBe(false); expect(categories).not.toContain('Videos'); expect(blogCategories).not.toContain('videos'); expect(prerenderPaths).not.toContain('/blog/category/videos'); expect(sitePaths).not.toContain('/blog/category/videos'); });
+ it('has no three-month self-pay program price', () => { expect(Object.keys(site.prices).sort()).toEqual(['followUp', 'initial', 'lateFee']); });
  it('keeps a distinct dietitian introduction for each care page', () => { for (const condition of conditions) expect(condition.dietitianNote.length).toBeGreaterThan(30); expect(new Set(conditions.map(c => c.dietitianNote)).size).toBe(10); });
  it('lists all 17 licensed practice states', () => { expect(site.states).toEqual(['AZ','CA','CO','CT','DE','HI','IN','MA','MI','NJ','NY','OK','OR','PA','TX','VA','WI']); });
  it('keeps chronic kidney disease as a care area', () => { expect(conditions.some(c => c.slug === 'kidney-health')).toBe(true); });
